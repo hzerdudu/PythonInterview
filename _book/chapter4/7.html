@@ -1,0 +1,1215 @@
+
+<!DOCTYPE HTML>
+<html lang="" >
+    <head>
+        <meta charset="UTF-8">
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <title>4.7 Python数据结构常考题之栈与队列 · GitBook</title>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="description" content="">
+        <meta name="generator" content="GitBook 3.2.3">
+        
+        
+        
+    
+    <link rel="stylesheet" href="../gitbook/style.css">
+
+    
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-expandable-chapters-small/expandable-chapters-small.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-splitter/splitter.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-search-plus/search.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-prism/prism.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-emphasize/plugin.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-fontsettings/website.css">
+                
+            
+        
+
+    
+
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+
+        
+    
+    
+    <meta name="HandheldFriendly" content="true"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="apple-touch-icon-precomposed" sizes="152x152" href="../gitbook/images/apple-touch-icon-precomposed-152.png">
+    <link rel="shortcut icon" href="../gitbook/images/favicon.ico" type="image/x-icon">
+
+    
+    <link rel="next" href="8.html" />
+    
+    
+    <link rel="prev" href="6.html" />
+    
+
+    </head>
+    <body>
+        
+<div class="book">
+    <div class="book-summary">
+        
+            
+<div id="book-search-input" role="search">
+    <input type="text" placeholder="Type to search" />
+</div>
+
+            
+                <nav role="navigation">
+                
+
+
+<ul class="summary">
+    
+    
+
+    
+
+    
+        
+        
+    
+        <li class="chapter " data-level="1.1" data-path="../">
+            
+                <a href="../">
+            
+                    
+                    简介
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2" data-path="../chapter1/readme.html">
+            
+                <a href="../chapter1/readme.html">
+            
+                    
+                    第1章 课程导学
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.2.1" data-path="../chapter1/1.1.html">
+            
+                <a href="../chapter1/1.1.html">
+            
+                    
+                    1.1 Python服务端工程师面试指导
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3" data-path="../chapter2/readme.html">
+            
+                <a href="../chapter2/readme.html">
+            
+                    
+                    第2章 面试流程介绍
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.3.1" data-path="../chapter2/2.1.html">
+            
+                <a href="../chapter2/2.1.html">
+            
+                    
+                    2.1 Python后端职位分析
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.2" data-path="../chapter2/2.2.html">
+            
+                <a href="../chapter2/2.2.html">
+            
+                    
+                    2.2 面试流程和环节
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.3" data-path="../chapter2/2.3.html">
+            
+                <a href="../chapter2/2.3.html">
+            
+                    
+                    2.3 Python后端技术栈
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.4" data-path="../chapter2/2.4.html">
+            
+                <a href="../chapter2/2.4.html">
+            
+                    
+                    2.4 Python初中级工程师技能要求
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.5" data-path="../chapter2/2.5.html">
+            
+                <a href="../chapter2/2.5.html">
+            
+                    
+                    2.5 简历书写与自我介绍
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.6" data-path="../chapter2/2.6.html">
+            
+                <a href="../chapter2/2.6.html">
+            
+                    
+                    2.6 行为面试常见问题与回答技巧
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.7" data-path="../chapter2/2.7.html">
+            
+                <a href="../chapter2/2.7.html">
+            
+                    
+                    2.7 行为面试练习题：讲讲你的项目
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4" data-path="../chapter3/readme.html">
+            
+                <a href="../chapter3/readme.html">
+            
+                    
+                    第3章 Python语言基础考察点
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.4.1" data-path="../chapter3/3.1.html">
+            
+                <a href="../chapter3/3.1.html">
+            
+                    
+                    3.1 Python语言基础常考题
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.2" data-path="../chapter3/3.2.html">
+            
+                <a href="../chapter3/3.2.html">
+            
+                    
+                    3.2 Python2和3差异常考题
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.3" data-path="../chapter3/3.3.html">
+            
+                <a href="../chapter3/3.3.html">
+            
+                    
+                    3.3 Python函数常考题
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.4" data-path="../chapter3/3.4.html">
+            
+                <a href="../chapter3/3.4.html">
+            
+                    
+                    3.4 Python异常机制常考题
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.5" data-path="../chapter3/3.5.html">
+            
+                <a href="../chapter3/3.5.html">
+            
+                    
+                    3.5 Python性能剖析与优化GIL常考题
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.6" data-path="../chapter3/3.6.html">
+            
+                <a href="../chapter3/3.6.html">
+            
+                    
+                    3.6 Python生成器与协程
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.7" data-path="../chapter3/3.7.html">
+            
+                <a href="../chapter3/3.7.html">
+            
+                    
+                    3.7 Python单元测试
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.8" data-path="../chapter3/3.8.html">
+            
+                <a href="../chapter3/3.8.html">
+            
+                    
+                    3.8 Python基础练习题深拷贝和浅拷贝
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5" data-path="readme.html">
+            
+                <a href="readme.html">
+            
+                    
+                    第4章 Python算法与数据结构考察点
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.5.1" data-path="1.html">
+            
+                <a href="1.html">
+            
+                    
+                    4.1 Python常见内置算法与数据结构常考题
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.2" data-path="2.html">
+            
+                <a href="2.html">
+            
+                    
+                    4.2 Python面试常考算法
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.3" data-path="3.html">
+            
+                <a href="3.html">
+            
+                    
+                    4.3 Python数据结构常考题
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.4" data-path="4.html">
+            
+                <a href="4.html">
+            
+                    
+                    4.4 Python白板编程
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.5" data-path="5.html">
+            
+                <a href="5.html">
+            
+                    
+                    4.5 Python数据结构常考题之链表
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.6" data-path="6.html">
+            
+                <a href="6.html">
+            
+                    
+                    4.6 Python数据结构常考题之二叉树
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter active" data-level="1.5.7" data-path="7.html">
+            
+                <a href="7.html">
+            
+                    
+                    4.7 Python数据结构常考题之栈与队列
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.8" data-path="8.html">
+            
+                <a href="8.html">
+            
+                    
+                    4.8 Python数据结构常考题之堆
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.9" data-path="9.html">
+            
+                <a href="9.html">
+            
+                    
+                    4.9 Python字符串常考题算法题
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.10" data-path="10.html">
+            
+                <a href="10.html">
+            
+                    
+                    4.10 算法与数据结构练习题反转链表
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6" data-path="../chapter5/readme.html">
+            
+                <a href="../chapter5/readme.html">
+            
+                    
+                    第5章 编程范式考察点
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.6.1" data-path="../chapter5/1.html">
+            
+                <a href="../chapter5/1.html">
+            
+                    
+                    5.1 面向对象基础及Python类常考题
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.2" data-path="../chapter5/2.html">
+            
+                <a href="../chapter5/2.html">
+            
+                    
+                    5.2 装饰器面试常考题
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.3" data-path="../chapter5/3.html">
+            
+                <a href="../chapter5/3.html">
+            
+                    
+                    5.3 设计模式：创建型模式
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.4" data-path="../chapter5/4.html">
+            
+                <a href="../chapter5/4.html">
+            
+                    
+                    5.4 设计模式：结构型模式
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.5" data-path="../chapter5/5.html">
+            
+                <a href="../chapter5/5.html">
+            
+                    
+                    5.5 设计模式：行为型模式
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.6" data-path="../chapter5/6.html">
+            
+                <a href="../chapter5/6.html">
+            
+                    
+                    5.6 Python函数式编程常考题
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.7" data-path="../chapter5/7.html">
+            
+                <a href="../chapter5/7.html">
+            
+                    
+                    5.7 编程范式练习题：编写一个单例模式
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7" data-path="../chapter6/readme.html">
+            
+                <a href="../chapter6/readme.html">
+            
+                    
+                    第6章 操作系统考察点
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.7.1" data-path="../chapter6/1.html">
+            
+                <a href="../chapter6/1.html">
+            
+                    
+                    6.1 面试常考Linux命令
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7.2" data-path="../chapter6/2.html">
+            
+                <a href="../chapter6/2.html">
+            
+                    
+                    6.2 操作系统线程和进程常考面试题
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7.3" data-path="../chapter6/3.html">
+            
+                <a href="../chapter6/3.html">
+            
+                    
+                    6.3 操作系统内存管理机制与Python垃圾回收
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7.4" data-path="../chapter6/4.html">
+            
+                <a href="../chapter6/4.html">
+            
+                    
+                    6.4 线程练习题：多线程爬虫
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.8" data-path="../chapter7/readme.html">
+            
+                <a href="../chapter7/readme.html">
+            
+                    
+                    第7章 网络编程考察点
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.8.1" data-path="../chapter7/1.html">
+            
+                <a href="../chapter7/1.html">
+            
+                    
+                    7.1 网络协议TCP和UDP面试常考题
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.8.2" data-path="../chapter7/2.html">
+            
+                <a href="../chapter7/2.html">
+            
+                    
+                    7.2 HTTP面试常考题
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.8.3" data-path="../chapter7/3.html">
+            
+                <a href="../chapter7/3.html">
+            
+                    
+                    7.3 网络编程常考题
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.8.4" data-path="../chapter7/4.html">
+            
+                <a href="../chapter7/4.html">
+            
+                    
+                    7.4 并发编程IO多路复用常见考题
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.8.5" data-path="../chapter7/5.html">
+            
+                <a href="../chapter7/5.html">
+            
+                    
+                    7.5 Python并发网络库常考题
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.8.6" data-path="../chapter7/6.html">
+            
+                <a href="../chapter7/6.html">
+            
+                    
+                    7.6 异步框架练习题：异步爬虫
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.9" data-path="../chapter8/readme.html">
+            
+                <a href="../chapter8/readme.html">
+            
+                    
+                    第8章 数据库考察点
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.9.1" data-path="../chapter8/1.html">
+            
+                <a href="../chapter8/1.html">
+            
+                    
+                    8.1 MySQL基础常考题
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.9.2" data-path="../chapter8/2.html">
+            
+                <a href="../chapter8/2.html">
+            
+                    
+                    8.2 MySQL索引优化常考题
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.9.3" data-path="../chapter8/3.html">
+            
+                <a href="../chapter8/3.html">
+            
+                    
+                    8.3 SQL语句编写常考题
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.9.4" data-path="../chapter8/4.html">
+            
+                <a href="../chapter8/4.html">
+            
+                    
+                    8.4 缓存机制及Redis常考面试题
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.9.5" data-path="../chapter8/5.html">
+            
+                <a href="../chapter8/5.html">
+            
+                    
+                    8.5 数据库练习题：MySQL索引与Redis
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.10" data-path="../chapter9/readme.html">
+            
+                <a href="../chapter9/readme.html">
+            
+                    
+                    第9章 Python Web框架考察点
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.10.1" data-path="../chapter9/1.html">
+            
+                <a href="../chapter9/1.html">
+            
+                    
+                    9.1 Python WSGI与Web框架考点
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.10.2" data-path="../chapter9/2.html">
+            
+                <a href="../chapter9/2.html">
+            
+                    
+                    9.2 Web安全考察点
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.10.3" data-path="../chapter9/3.html">
+            
+                <a href="../chapter9/3.html">
+            
+                    
+                    9.3 前后端分离与RESTful常见面试题
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.10.4" data-path="../chapter9/4.html">
+            
+                <a href="../chapter9/4.html">
+            
+                    
+                    9.4 Web安全思考题：什么是HTTPS
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.11" data-path="../chapter10/readme.html">
+            
+                <a href="../chapter10/readme.html">
+            
+                    
+                    第10章 系统设计考察点
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.11.1" data-path="../chapter10/1.html">
+            
+                <a href="../chapter10/1.html">
+            
+                    
+                    10.1 系统设计考点解析
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.11.2" data-path="../chapter10/2.html">
+            
+                <a href="../chapter10/2.html">
+            
+                    
+                    10.2 系统设计真题解析
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.11.3" data-path="../chapter10/3.html">
+            
+                <a href="../chapter10/3.html">
+            
+                    
+                    10.3 系统设计思考题
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.12" data-path="../chapter11/readme.html">
+            
+                <a href="../chapter11/readme.html">
+            
+                    
+                    第11章 面试经验分享
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.12.1" data-path="../chapter11/1.html">
+            
+                <a href="../chapter11/1.html">
+            
+                    
+                    11.1 面试经验分享
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.13" data-path="../chapter12/readme.html">
+            
+                <a href="../chapter12/readme.html">
+            
+                    
+                    第12章 课程总结
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.13.1" data-path="../chapter12/1.html">
+            
+                <a href="../chapter12/1.html">
+            
+                    
+                    12.1 课程总结
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+    
+
+    <li class="divider"></li>
+
+    <li>
+        <a href="https://www.gitbook.com" target="blank" class="gitbook-link">
+            Published with GitBook
+        </a>
+    </li>
+</ul>
+
+
+                </nav>
+            
+        
+    </div>
+
+    <div class="book-body">
+        
+            <div class="body-inner">
+                
+                    
+
+<div class="book-header" role="navigation">
+    
+
+    <!-- Title -->
+    <h1>
+        <i class="fa fa-circle-o-notch fa-spin"></i>
+        <a href=".." >4.7 Python数据结构常考题之栈与队列</a>
+    </h1>
+</div>
+
+
+
+
+                    <div class="page-wrapper" tabindex="-1" role="main">
+                        <div class="page-inner">
+                            
+<div class="search-plus" id="book-search-results">
+    <div class="search-noresults">
+    
+                                <section class="normal markdown-section">
+                                
+                                <h1 id="47-python&#x6570;&#x636E;&#x7ED3;&#x6784;&#x5E38;&#x8003;&#x9898;&#x4E4B;&#x6808;&#x4E0E;&#x961F;&#x5217;">4.7 Python&#x6570;&#x636E;&#x7ED3;&#x6784;&#x5E38;&#x8003;&#x9898;&#x4E4B;&#x6808;&#x4E0E;&#x961F;&#x5217;</h1>
+
+                                
+                                </section>
+                            
+    </div>
+    <div class="search-results">
+        <div class="has-results">
+            
+            <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+            <ul class="search-results-list"></ul>
+            
+        </div>
+        <div class="no-results">
+            
+            <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+            
+        </div>
+    </div>
+</div>
+
+                        </div>
+                    </div>
+                
+            </div>
+
+            
+                
+                <a href="6.html" class="navigation navigation-prev " aria-label="Previous page: 4.6 Python数据结构常考题之二叉树">
+                    <i class="fa fa-angle-left"></i>
+                </a>
+                
+                
+                <a href="8.html" class="navigation navigation-next " aria-label="Next page: 4.8 Python数据结构常考题之堆">
+                    <i class="fa fa-angle-right"></i>
+                </a>
+                
+            
+        
+    </div>
+
+    <script>
+        var gitbook = gitbook || [];
+        gitbook.push(function() {
+            gitbook.page.hasChanged({"page":{"title":"4.7 Python数据结构常考题之栈与队列","level":"1.5.7","depth":2,"next":{"title":"4.8 Python数据结构常考题之堆","level":"1.5.8","depth":2,"path":"chapter4/8.md","ref":"chapter4/8.md","articles":[]},"previous":{"title":"4.6 Python数据结构常考题之二叉树","level":"1.5.6","depth":2,"path":"chapter4/6.md","ref":"chapter4/6.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":["expandable-chapters-small","splitter","-lunr","-search","search-plus","prism","-highlight","emphasize","livereload"],"pluginsConfig":{"prism":{},"emphasize":{},"livereload":{},"splitter":{},"fontsettings":{"theme":"white","family":"sans","size":2},"expandable-chapters-small":{},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"search-plus":{}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"chapter4/7.md","mtime":"2019-03-19T14:57:04.540Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2019-03-22T09:32:49.014Z"},"basePath":"..","book":{"language":""}});
+        });
+    </script>
+</div>
+
+        
+    <script src="../gitbook/gitbook.js"></script>
+    <script src="../gitbook/theme.js"></script>
+    
+        
+        <script src="../gitbook/gitbook-plugin-expandable-chapters-small/expandable-chapters-small.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-splitter/splitter.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-search-plus/jquery.mark.min.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-search-plus/search.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-livereload/plugin.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-sharing/buttons.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-fontsettings/fontsettings.js"></script>
+        
+    
+
+    </body>
+</html>
+

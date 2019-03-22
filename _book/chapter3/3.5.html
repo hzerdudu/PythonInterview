@@ -1,0 +1,1356 @@
+
+<!DOCTYPE HTML>
+<html lang="" >
+    <head>
+        <meta charset="UTF-8">
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <title>3.5 Python性能剖析与优化GIL常考题 · GitBook</title>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="description" content="">
+        <meta name="generator" content="GitBook 3.2.3">
+        
+        
+        
+    
+    <link rel="stylesheet" href="../gitbook/style.css">
+
+    
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-expandable-chapters-small/expandable-chapters-small.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-splitter/splitter.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-search-plus/search.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-prism/prism.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-emphasize/plugin.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-fontsettings/website.css">
+                
+            
+        
+
+    
+
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+
+        
+    
+    
+    <meta name="HandheldFriendly" content="true"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="apple-touch-icon-precomposed" sizes="152x152" href="../gitbook/images/apple-touch-icon-precomposed-152.png">
+    <link rel="shortcut icon" href="../gitbook/images/favicon.ico" type="image/x-icon">
+
+    
+    <link rel="next" href="3.6.html" />
+    
+    
+    <link rel="prev" href="3.4.html" />
+    
+
+    </head>
+    <body>
+        
+<div class="book">
+    <div class="book-summary">
+        
+            
+<div id="book-search-input" role="search">
+    <input type="text" placeholder="Type to search" />
+</div>
+
+            
+                <nav role="navigation">
+                
+
+
+<ul class="summary">
+    
+    
+
+    
+
+    
+        
+        
+    
+        <li class="chapter " data-level="1.1" data-path="../">
+            
+                <a href="../">
+            
+                    
+                    简介
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2" data-path="../chapter1/readme.html">
+            
+                <a href="../chapter1/readme.html">
+            
+                    
+                    第1章 课程导学
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.2.1" data-path="../chapter1/1.1.html">
+            
+                <a href="../chapter1/1.1.html">
+            
+                    
+                    1.1 Python服务端工程师面试指导
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3" data-path="../chapter2/readme.html">
+            
+                <a href="../chapter2/readme.html">
+            
+                    
+                    第2章 面试流程介绍
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.3.1" data-path="../chapter2/2.1.html">
+            
+                <a href="../chapter2/2.1.html">
+            
+                    
+                    2.1 Python后端职位分析
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.2" data-path="../chapter2/2.2.html">
+            
+                <a href="../chapter2/2.2.html">
+            
+                    
+                    2.2 面试流程和环节
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.3" data-path="../chapter2/2.3.html">
+            
+                <a href="../chapter2/2.3.html">
+            
+                    
+                    2.3 Python后端技术栈
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.4" data-path="../chapter2/2.4.html">
+            
+                <a href="../chapter2/2.4.html">
+            
+                    
+                    2.4 Python初中级工程师技能要求
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.5" data-path="../chapter2/2.5.html">
+            
+                <a href="../chapter2/2.5.html">
+            
+                    
+                    2.5 简历书写与自我介绍
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.6" data-path="../chapter2/2.6.html">
+            
+                <a href="../chapter2/2.6.html">
+            
+                    
+                    2.6 行为面试常见问题与回答技巧
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.7" data-path="../chapter2/2.7.html">
+            
+                <a href="../chapter2/2.7.html">
+            
+                    
+                    2.7 行为面试练习题：讲讲你的项目
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4" data-path="readme.html">
+            
+                <a href="readme.html">
+            
+                    
+                    第3章 Python语言基础考察点
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.4.1" data-path="3.1.html">
+            
+                <a href="3.1.html">
+            
+                    
+                    3.1 Python语言基础常考题
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.2" data-path="3.2.html">
+            
+                <a href="3.2.html">
+            
+                    
+                    3.2 Python2和3差异常考题
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.3" data-path="3.3.html">
+            
+                <a href="3.3.html">
+            
+                    
+                    3.3 Python函数常考题
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.4" data-path="3.4.html">
+            
+                <a href="3.4.html">
+            
+                    
+                    3.4 Python异常机制常考题
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter active" data-level="1.4.5" data-path="3.5.html">
+            
+                <a href="3.5.html">
+            
+                    
+                    3.5 Python性能剖析与优化GIL常考题
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.6" data-path="3.6.html">
+            
+                <a href="3.6.html">
+            
+                    
+                    3.6 Python生成器与协程
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.7" data-path="3.7.html">
+            
+                <a href="3.7.html">
+            
+                    
+                    3.7 Python单元测试
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.8" data-path="3.8.html">
+            
+                <a href="3.8.html">
+            
+                    
+                    3.8 Python基础练习题深拷贝和浅拷贝
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5" data-path="../chapter4/readme.html">
+            
+                <a href="../chapter4/readme.html">
+            
+                    
+                    第4章 Python算法与数据结构考察点
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.5.1" data-path="../chapter4/1.html">
+            
+                <a href="../chapter4/1.html">
+            
+                    
+                    4.1 Python常见内置算法与数据结构常考题
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.2" data-path="../chapter4/2.html">
+            
+                <a href="../chapter4/2.html">
+            
+                    
+                    4.2 Python面试常考算法
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.3" data-path="../chapter4/3.html">
+            
+                <a href="../chapter4/3.html">
+            
+                    
+                    4.3 Python数据结构常考题
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.4" data-path="../chapter4/4.html">
+            
+                <a href="../chapter4/4.html">
+            
+                    
+                    4.4 Python白板编程
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.5" data-path="../chapter4/5.html">
+            
+                <a href="../chapter4/5.html">
+            
+                    
+                    4.5 Python数据结构常考题之链表
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.6" data-path="../chapter4/6.html">
+            
+                <a href="../chapter4/6.html">
+            
+                    
+                    4.6 Python数据结构常考题之二叉树
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.7" data-path="../chapter4/7.html">
+            
+                <a href="../chapter4/7.html">
+            
+                    
+                    4.7 Python数据结构常考题之栈与队列
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.8" data-path="../chapter4/8.html">
+            
+                <a href="../chapter4/8.html">
+            
+                    
+                    4.8 Python数据结构常考题之堆
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.9" data-path="../chapter4/9.html">
+            
+                <a href="../chapter4/9.html">
+            
+                    
+                    4.9 Python字符串常考题算法题
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.10" data-path="../chapter4/10.html">
+            
+                <a href="../chapter4/10.html">
+            
+                    
+                    4.10 算法与数据结构练习题反转链表
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6" data-path="../chapter5/readme.html">
+            
+                <a href="../chapter5/readme.html">
+            
+                    
+                    第5章 编程范式考察点
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.6.1" data-path="../chapter5/1.html">
+            
+                <a href="../chapter5/1.html">
+            
+                    
+                    5.1 面向对象基础及Python类常考题
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.2" data-path="../chapter5/2.html">
+            
+                <a href="../chapter5/2.html">
+            
+                    
+                    5.2 装饰器面试常考题
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.3" data-path="../chapter5/3.html">
+            
+                <a href="../chapter5/3.html">
+            
+                    
+                    5.3 设计模式：创建型模式
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.4" data-path="../chapter5/4.html">
+            
+                <a href="../chapter5/4.html">
+            
+                    
+                    5.4 设计模式：结构型模式
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.5" data-path="../chapter5/5.html">
+            
+                <a href="../chapter5/5.html">
+            
+                    
+                    5.5 设计模式：行为型模式
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.6" data-path="../chapter5/6.html">
+            
+                <a href="../chapter5/6.html">
+            
+                    
+                    5.6 Python函数式编程常考题
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.7" data-path="../chapter5/7.html">
+            
+                <a href="../chapter5/7.html">
+            
+                    
+                    5.7 编程范式练习题：编写一个单例模式
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7" data-path="../chapter6/readme.html">
+            
+                <a href="../chapter6/readme.html">
+            
+                    
+                    第6章 操作系统考察点
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.7.1" data-path="../chapter6/1.html">
+            
+                <a href="../chapter6/1.html">
+            
+                    
+                    6.1 面试常考Linux命令
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7.2" data-path="../chapter6/2.html">
+            
+                <a href="../chapter6/2.html">
+            
+                    
+                    6.2 操作系统线程和进程常考面试题
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7.3" data-path="../chapter6/3.html">
+            
+                <a href="../chapter6/3.html">
+            
+                    
+                    6.3 操作系统内存管理机制与Python垃圾回收
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7.4" data-path="../chapter6/4.html">
+            
+                <a href="../chapter6/4.html">
+            
+                    
+                    6.4 线程练习题：多线程爬虫
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.8" data-path="../chapter7/readme.html">
+            
+                <a href="../chapter7/readme.html">
+            
+                    
+                    第7章 网络编程考察点
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.8.1" data-path="../chapter7/1.html">
+            
+                <a href="../chapter7/1.html">
+            
+                    
+                    7.1 网络协议TCP和UDP面试常考题
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.8.2" data-path="../chapter7/2.html">
+            
+                <a href="../chapter7/2.html">
+            
+                    
+                    7.2 HTTP面试常考题
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.8.3" data-path="../chapter7/3.html">
+            
+                <a href="../chapter7/3.html">
+            
+                    
+                    7.3 网络编程常考题
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.8.4" data-path="../chapter7/4.html">
+            
+                <a href="../chapter7/4.html">
+            
+                    
+                    7.4 并发编程IO多路复用常见考题
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.8.5" data-path="../chapter7/5.html">
+            
+                <a href="../chapter7/5.html">
+            
+                    
+                    7.5 Python并发网络库常考题
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.8.6" data-path="../chapter7/6.html">
+            
+                <a href="../chapter7/6.html">
+            
+                    
+                    7.6 异步框架练习题：异步爬虫
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.9" data-path="../chapter8/readme.html">
+            
+                <a href="../chapter8/readme.html">
+            
+                    
+                    第8章 数据库考察点
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.9.1" data-path="../chapter8/1.html">
+            
+                <a href="../chapter8/1.html">
+            
+                    
+                    8.1 MySQL基础常考题
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.9.2" data-path="../chapter8/2.html">
+            
+                <a href="../chapter8/2.html">
+            
+                    
+                    8.2 MySQL索引优化常考题
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.9.3" data-path="../chapter8/3.html">
+            
+                <a href="../chapter8/3.html">
+            
+                    
+                    8.3 SQL语句编写常考题
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.9.4" data-path="../chapter8/4.html">
+            
+                <a href="../chapter8/4.html">
+            
+                    
+                    8.4 缓存机制及Redis常考面试题
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.9.5" data-path="../chapter8/5.html">
+            
+                <a href="../chapter8/5.html">
+            
+                    
+                    8.5 数据库练习题：MySQL索引与Redis
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.10" data-path="../chapter9/readme.html">
+            
+                <a href="../chapter9/readme.html">
+            
+                    
+                    第9章 Python Web框架考察点
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.10.1" data-path="../chapter9/1.html">
+            
+                <a href="../chapter9/1.html">
+            
+                    
+                    9.1 Python WSGI与Web框架考点
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.10.2" data-path="../chapter9/2.html">
+            
+                <a href="../chapter9/2.html">
+            
+                    
+                    9.2 Web安全考察点
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.10.3" data-path="../chapter9/3.html">
+            
+                <a href="../chapter9/3.html">
+            
+                    
+                    9.3 前后端分离与RESTful常见面试题
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.10.4" data-path="../chapter9/4.html">
+            
+                <a href="../chapter9/4.html">
+            
+                    
+                    9.4 Web安全思考题：什么是HTTPS
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.11" data-path="../chapter10/readme.html">
+            
+                <a href="../chapter10/readme.html">
+            
+                    
+                    第10章 系统设计考察点
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.11.1" data-path="../chapter10/1.html">
+            
+                <a href="../chapter10/1.html">
+            
+                    
+                    10.1 系统设计考点解析
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.11.2" data-path="../chapter10/2.html">
+            
+                <a href="../chapter10/2.html">
+            
+                    
+                    10.2 系统设计真题解析
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.11.3" data-path="../chapter10/3.html">
+            
+                <a href="../chapter10/3.html">
+            
+                    
+                    10.3 系统设计思考题
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.12" data-path="../chapter11/readme.html">
+            
+                <a href="../chapter11/readme.html">
+            
+                    
+                    第11章 面试经验分享
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.12.1" data-path="../chapter11/1.html">
+            
+                <a href="../chapter11/1.html">
+            
+                    
+                    11.1 面试经验分享
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.13" data-path="../chapter12/readme.html">
+            
+                <a href="../chapter12/readme.html">
+            
+                    
+                    第12章 课程总结
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.13.1" data-path="../chapter12/1.html">
+            
+                <a href="../chapter12/1.html">
+            
+                    
+                    12.1 课程总结
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+    
+
+    <li class="divider"></li>
+
+    <li>
+        <a href="https://www.gitbook.com" target="blank" class="gitbook-link">
+            Published with GitBook
+        </a>
+    </li>
+</ul>
+
+
+                </nav>
+            
+        
+    </div>
+
+    <div class="book-body">
+        
+            <div class="body-inner">
+                
+                    
+
+<div class="book-header" role="navigation">
+    
+
+    <!-- Title -->
+    <h1>
+        <i class="fa fa-circle-o-notch fa-spin"></i>
+        <a href=".." >3.5 Python性能剖析与优化GIL常考题</a>
+    </h1>
+</div>
+
+
+
+
+                    <div class="page-wrapper" tabindex="-1" role="main">
+                        <div class="page-inner">
+                            
+<div class="search-plus" id="book-search-results">
+    <div class="search-noresults">
+    
+                                <section class="normal markdown-section">
+                                
+                                <h1 id="35-python&#x6027;&#x80FD;&#x5256;&#x6790;&#x4E0E;&#x4F18;&#x5316;gil&#x5E38;&#x8003;&#x9898;">3.5 Python&#x6027;&#x80FD;&#x5256;&#x6790;&#x4E0E;&#x4F18;&#x5316;GIL&#x5E38;&#x8003;&#x9898;</h1>
+<ul>
+<li>GIL:Global Interpreter Lock<ul>
+<li>CPython&#x89E3;&#x91CA;&#x5668;&#x7684;&#x5185;&#x5B58;&#x7BA1;&#x7406;&#x5E76;&#x4E0D;&#x662F;&#x7EBF;&#x7A0B;&#x5B89;&#x5168;&#x7684;&#xFF0C;&#x591A;&#x7EBF;&#x7A0B;&#x5982;&#x679C;&#x540C;&#x65F6;&#x4FEE;&#x6539;&#x4E00;&#x4E2A;&#x5BF9;&#x8C61;&#x53EF;&#x80FD;&#x5BFC;&#x81F4;&#x95EE;&#x9898;</li>
+<li>&#x4FDD;&#x62A4;&#x591A;&#x7EBF;&#x7A0B;&#x60C5;&#x51B5;&#x4E0B;&#x5BF9;Python&#x5BF9;&#x8C61;&#x7684;&#x8BBF;&#x95EE;</li>
+<li>CPython&#x4F7F;&#x7528;&#x7B80;&#x5355;&#x7684;&#x9501;&#x673A;&#x5236;&#x907F;&#x514D;&#x591A;&#x4E2A;&#x7EBF;&#x7A0B;&#x540C;&#x65F6;&#x6267;&#x884C;&#x5B57;&#x8282;&#x7801;</li>
+</ul>
+</li>
+<li>GIL&#x7684;&#x5F71;&#x54CD;<font color="red"><strong>&#x9650;&#x5236;&#x4E86;&#x7EBF;&#x7A0B;&#x7684;&#x591A;&#x6838;&#x6267;&#x884C;</strong></font><ul>
+<li>&#x540C;&#x4E00;&#x65F6;&#x95F4;&#x53EA;&#x80FD;&#x6709;&#x4E00;&#x4E2A;&#x7EBF;&#x7A0B;&#x6267;&#x884C;&#x5B57;&#x8282;&#x7801;</li>
+<li>CPU&#x5BC6;&#x96C6;&#x7A0B;&#x5E8F;&#x96BE;&#x4EE5;&#x5229;&#x7528;&#x591A;&#x6838;&#x4F18;&#x52BF;</li>
+<li>IO&#x671F;&#x95F4;&#x4F1A;&#x91CA;&#x653E;GIL&#xFF0C;&#x5BF9;IO&#x5BC6;&#x96C6;&#x7A0B;&#x5E8F;&#x5F71;&#x54CD;&#x4E0D;&#x5927;</li>
+</ul>
+</li>
+<li>&#x5982;&#x4F55;&#x89C4;&#x907F;GIL&#x5F71;&#x54CD;&#xFF1A; <font color="red"><strong>&#x533A;&#x5206;CPU&#x548C;IO&#x5BC6;&#x96C6;&#x7A0B;&#x5E8F;</strong></font><ul>
+<li>CPU&#x5BC6;&#x96C6;&#x53EF;&#x4EE5;&#x4F7F;&#x7528;&#x591A;&#x8FDB;&#x7A0B;+&#x8FDB;&#x7A0B;&#x6C60;</li>
+<li>IO&#x5BC6;&#x96C6;&#x4F7F;&#x7528;&#x591A;&#x7EBF;&#x7A0B;/&#x534F;&#x7A0B;</li>
+<li>cpython&#x6269;&#x5C55;</li>
+</ul>
+</li>
+<li>GIL&#x5B9E;&#x73B0;<ul>
+<li>&#x6BCF;&#x9694;&#x4E00;&#x6BB5;&#x65F6;&#x95F4;&#x91CA;&#x653E;&#x5F53;&#x524D;&#x7684;&#x9501;&#xFF0C;&#x8BA9;&#x5176;&#x5B83;&#x7EBF;&#x7A0B;&#x53BB;&#x83B7;&#x53D6;&#x9501;</li>
+</ul>
+</li>
+<li><p>&#x7EC3;&#x4E60;  </p>
+<pre class="language-"><code class="lang-python">  <span class="token keyword">import</span> threading
+
+  n <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span>
+
+  <span class="token keyword">def</span> <span class="token function">foo</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+      n<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span> <span class="token operator">=</span> n<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span> <span class="token operator">+</span> <span class="token number">1</span>
+      n<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span> <span class="token operator">=</span> n<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span> <span class="token operator">+</span> <span class="token number">1</span>
+
+  threads <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token punctuation">]</span>
+  <span class="token keyword">for</span> i <span class="token keyword">in</span> <span class="token builtin">range</span><span class="token punctuation">(</span><span class="token number">5000</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+      t <span class="token operator">=</span> threading<span class="token punctuation">.</span>Thread<span class="token punctuation">(</span>target<span class="token operator">=</span>foo<span class="token punctuation">)</span>
+      threads<span class="token punctuation">.</span>append<span class="token punctuation">(</span>t<span class="token punctuation">)</span>
+  <span class="token keyword">for</span> t <span class="token keyword">in</span> threads<span class="token punctuation">:</span>
+      t<span class="token punctuation">.</span>start<span class="token punctuation">(</span><span class="token punctuation">)</span>
+  <span class="token keyword">print</span><span class="token punctuation">(</span>n<span class="token punctuation">)</span>
+</code></pre>
+<ul>
+<li>&#x6267;&#x884C;&#x7ED3;&#x679C;&#x4E0D;&#x5B9A;</li>
+</ul>
+</li>
+<li><p>&#x4E3A;&#x4EC0;&#x4E48;&#x6709;&#x4E86;GIL&#x8FD8;&#x8981;&#x5173;&#x6CE8;&#x7EBF;&#x7A0B;&#x5B89;&#x5168;</p>
+<ul>
+<li>Python&#x4E2D;&#x4EC0;&#x4E48;&#x64CD;&#x4F5C;&#x624D;&#x662F;&#x539F;&#x5B50;&#x7684;&#xFF1F;&#x4E00;&#x6B65;&#x5230;&#x4F4D;&#x6267;&#x884C;&#x5B8C;<ul>
+<li>&#x4E00;&#x4E2A;&#x64CD;&#x4F5C;&#x5982;&#x679C;&#x662F;&#x4E00;&#x4E2A;&#x5B57;&#x8282;&#x7801;&#x6307;&#x5B9A;&#x53EF;&#x4EE5;&#x5B8C;&#x6210;&#x5C31;&#x662F;&#x539F;&#x5B50;&#x7684;</li>
+<li>&#x539F;&#x5B50;&#x7684;&#x662F;&#x53EF;&#x4EE5;&#x4FDD;&#x8BC1;&#x7EBF;&#x7A0B;&#x5B89;&#x5168;&#x7684;</li>
+<li>&#x4F7F;&#x7528;dis&#x64CD;&#x4F5C;&#x6765;&#x5206;&#x6790;&#x5B57;&#x8282;&#x7801; </li>
+</ul>
+</li>
+<li><p>&#x539F;&#x5B50;&#x64CD;&#x4F5C;&#x662F;&#x7EBF;&#x7A0B;&#x5B89;&#x5168;&#x7684;</p>
+<pre class="language-"><code class="lang-python"><span class="token keyword">import</span> dis
+
+<span class="token keyword">def</span> <span class="token function">update_list</span><span class="token punctuation">(</span>l<span class="token punctuation">)</span><span class="token punctuation">:</span>
+  l<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token number">1</span>  <span class="token comment"># &#x539F;&#x5B50;&#x64CD;&#x4F5C;&#xFF0C;&#x4E0D;&#x7528;&#x62C5;&#x5FC3;&#x7EBF;&#x7A0B;&#x5B89;&#x5168;&#x95EE;&#x9898;</span>
+
+<span class="token keyword">print</span><span class="token punctuation">(</span>dis<span class="token punctuation">.</span>dis<span class="token punctuation">(</span>update_list<span class="token punctuation">)</span><span class="token punctuation">)</span>
+<span class="token triple-quoted-string string">&quot;&quot;&quot;
+5           0 LOAD_CONST               1 (1)
+            2 LOAD_FAST                0 (l)
+            4 LOAD_CONST               2 (0)
+            6 STORE_SUBSCR             # &#x5355;&#x5B57;&#x8282;&#x7801;&#x64CD;&#x4F5C;&#xFF0C;&#x7EBF;&#x7A0B;&#x5B89;&#x5168;
+            8 LOAD_CONST               0 (None)
+           10 RETURN_VALUE
+&quot;&quot;&quot;</span>
+</code></pre>
+</li>
+<li><p>&#x975E;&#x539F;&#x5B50;&#x64CD;&#x4F5C;&#x4E0D;&#x662F;&#x7EBF;&#x7A0B;&#x5B89;&#x5168;&#x7684;</p>
+<pre class="language-"><code class="lang-python"><span class="token keyword">import</span> dis
+
+<span class="token keyword">def</span> <span class="token function">incr_list</span><span class="token punctuation">(</span>l<span class="token punctuation">)</span><span class="token punctuation">:</span>
+  l<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span> <span class="token operator">+=</span> <span class="token number">1</span>  <span class="token comment"># &#x5371;&#x9669;&#xFF01;&#xFF01;&#x4E0D;&#x662F;&#x539F;&#x5B50;&#x64CD;&#x4F5C;</span>
+
+<span class="token keyword">print</span><span class="token punctuation">(</span>dis<span class="token punctuation">.</span>dis<span class="token punctuation">(</span>incr_list<span class="token punctuation">)</span><span class="token punctuation">)</span>
+<span class="token triple-quoted-string string">&quot;&quot;&quot;
+5           0 LOAD_FAST                0 (l)
+            2 LOAD_CONST               1 (0)
+            4 DUP_TOP_TWO
+            6 BINARY_SUBSCR
+            8 LOAD_CONST               2 (1)
+           10 INPLACE_ADD              # &#x9700;&#x8981;&#x591A;&#x4E2A;&#x5B57;&#x8282;&#x7801;&#x64CD;&#x4F5C;
+           12 ROT_THREE                # &#x6709;&#x53EF;&#x80FD;&#x5728;&#x7EBF;&#x7A0B;&#x6267;&#x884C;&#x8FC7;&#x7A0B;&#x4E2D;&#x5207;&#x6362;&#x5230;&#x5176;&#x5B83;&#x7EBF;&#x7A0B;
+           14 STORE_SUBSCR
+           16 LOAD_CONST               0 (None)
+           18 RETURN_VALUE
+&quot;&quot;&quot;</span>
+</code></pre>
+</li>
+</ul>
+</li>
+<li><p>&#x5982;&#x4F55;&#x4FDD;&#x8BC1;&#x7EBF;&#x7A0B;&#x5B89;&#x5168;</p>
+<ul>
+<li><p>&#x52A0;&#x9501;</p>
+<pre class="language-"><code class="lang-python"><span class="token keyword">import</span> threading
+
+lock <span class="token operator">=</span> threading<span class="token punctuation">.</span>Lock<span class="token punctuation">(</span><span class="token punctuation">)</span>
+
+n <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span>
+
+<span class="token keyword">def</span> <span class="token function">foo</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+  <span class="token keyword">with</span> lock<span class="token punctuation">:</span>
+      n<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span> <span class="token operator">=</span> n<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span> <span class="token operator">+</span> <span class="token number">1</span>
+      n<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span> <span class="token operator">=</span> n<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span> <span class="token operator">+</span> <span class="token number">1</span>
+
+threads <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token punctuation">]</span>
+<span class="token keyword">for</span> i <span class="token keyword">in</span> <span class="token builtin">range</span><span class="token punctuation">(</span><span class="token number">5000</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+  t <span class="token operator">=</span> threading<span class="token punctuation">.</span>Thread<span class="token punctuation">(</span>target<span class="token operator">=</span>foo<span class="token punctuation">)</span>
+  threads<span class="token punctuation">.</span>append<span class="token punctuation">(</span>t<span class="token punctuation">)</span>
+
+<span class="token keyword">for</span> t <span class="token keyword">in</span> threads<span class="token punctuation">:</span>
+  t<span class="token punctuation">.</span>start<span class="token punctuation">(</span><span class="token punctuation">)</span>
+
+<span class="token keyword">print</span><span class="token punctuation">(</span>n<span class="token punctuation">)</span>
+</code></pre>
+</li>
+</ul>
+</li>
+<li>&#x5982;&#x4F55;&#x5256;&#x6790;&#x7A0B;&#x5E8F;&#x6027;&#x80FD;<ul>
+<li>&#x4F7F;&#x7528;&#x5404;&#x79CD;profile&#x5DE5;&#x5177;&#xFF08;&#x5185;&#x7F6E;&#x6216;&#x7B2C;&#x4E09;&#x65B9;&#xFF09;<ul>
+<li>&#x4E8C;&#x516B;&#x5B9A;&#x5F8B;&#xFF0C;&#x5927;&#x90E8;&#x5206;&#x65F6;&#x95F4;&#x6D88;&#x8017;&#x5728;&#x5C11;&#x91CF;&#x4EE3;&#x7801;&#x4E0A;</li>
+<li>&#x5185;&#x7F6E;&#x7684;profile/cprofile&#x7B49;&#x5DE5;&#x5177;</li>
+<li>&#x4F7F;&#x7528;pyflame&#xFF08;uber&#x5F00;&#x6E90;&#xFF09;&#x7684;&#x706B;&#x7130;&#x56FE;&#x5DE5;&#x5177;</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>&#x670D;&#x52A1;&#x7AEF;&#x6027;&#x80FD;&#x4F18;&#x5316;&#x63AA;&#x65BD;<ul>
+<li>Web&#x5E94;&#x7528;&#x4E00;&#x822C;&#x8BED;&#x8A00;&#x4E0D;&#x4F1A;&#x6210;&#x4E3A;&#x74F6;&#x9888;<ul>
+<li>&#x6570;&#x636E;&#x7ED3;&#x6784;&#x4E0E;&#x7B97;&#x6CD5;&#x4F18;&#x5316;</li>
+<li>&#x6570;&#x636E;&#x5E93;&#x5C42;&#xFF1A;&#x7D22;&#x5F15;&#x4F18;&#x5316;&#x3001;&#x6162;&#x67E5;&#x8BE2;&#x6D88;&#x9664;&#xFF0C;&#x6279;&#x91CF;&#x64CD;&#x4F5C;&#x51CF;&#x5C11;&#x591A;&#x6B21;IO&#xFF0C;&#x5F15;&#x5165;NoSQL&#x63D0;&#x9AD8;&#x6027;&#x80FD;</li>
+<li>&#x7F51;&#x7EDC;IO&#xFF1A;&#x6279;&#x91CF;&#x64CD;&#x4F5C;&#xFF0C;pipeline&#x64CD;&#x4F5C;&#x51CF;&#x5C11;IO&#x8BF7;&#x6C42;&#x6B21;&#x6570;</li>
+<li>&#x7F13;&#x5B58;&#xFF1A;&#x4F7F;&#x7528;&#x5185;&#x5B58;&#x6570;&#x636E;&#x5E93;redis&#x3001;memcached</li>
+<li>&#x5F02;&#x6B65;&#xFF1A;asyncio&#x3001;celery</li>
+<li>&#x5E76;&#x53D1;&#xFF1A;gevent&#x3001;&#x591A;&#x7EBF;&#x7A0B;</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+                                
+                                </section>
+                            
+    </div>
+    <div class="search-results">
+        <div class="has-results">
+            
+            <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+            <ul class="search-results-list"></ul>
+            
+        </div>
+        <div class="no-results">
+            
+            <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+            
+        </div>
+    </div>
+</div>
+
+                        </div>
+                    </div>
+                
+            </div>
+
+            
+                
+                <a href="3.4.html" class="navigation navigation-prev " aria-label="Previous page: 3.4 Python异常机制常考题">
+                    <i class="fa fa-angle-left"></i>
+                </a>
+                
+                
+                <a href="3.6.html" class="navigation navigation-next " aria-label="Next page: 3.6 Python生成器与协程">
+                    <i class="fa fa-angle-right"></i>
+                </a>
+                
+            
+        
+    </div>
+
+    <script>
+        var gitbook = gitbook || [];
+        gitbook.push(function() {
+            gitbook.page.hasChanged({"page":{"title":"3.5 Python性能剖析与优化GIL常考题","level":"1.4.5","depth":2,"next":{"title":"3.6 Python生成器与协程","level":"1.4.6","depth":2,"path":"chapter3/3.6.md","ref":"chapter3/3.6.md","articles":[]},"previous":{"title":"3.4 Python异常机制常考题","level":"1.4.4","depth":2,"path":"chapter3/3.4.md","ref":"chapter3/3.4.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":["expandable-chapters-small","splitter","-lunr","-search","search-plus","prism","-highlight","emphasize","livereload"],"pluginsConfig":{"prism":{},"emphasize":{},"livereload":{},"splitter":{},"fontsettings":{"theme":"white","family":"sans","size":2},"expandable-chapters-small":{},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"search-plus":{}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"chapter3/3.5.md","mtime":"2019-03-22T02:07:28.473Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2019-03-22T09:32:49.014Z"},"basePath":"..","book":{"language":""}});
+        });
+    </script>
+</div>
+
+        
+    <script src="../gitbook/gitbook.js"></script>
+    <script src="../gitbook/theme.js"></script>
+    
+        
+        <script src="../gitbook/gitbook-plugin-expandable-chapters-small/expandable-chapters-small.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-splitter/splitter.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-search-plus/jquery.mark.min.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-search-plus/search.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-livereload/plugin.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-sharing/buttons.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-fontsettings/fontsettings.js"></script>
+        
+    
+
+    </body>
+</html>
+

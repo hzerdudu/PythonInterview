@@ -1,0 +1,8 @@
+{
+	"plugins": ["expandable-chapters-small","splitter", "-lunr", "-search", "search-plus","prism", "-highlight","emphasize"],
+	"pluginsConfig": {
+		"theme-default": {
+		"showLevel": false
+	}
+}
+}
