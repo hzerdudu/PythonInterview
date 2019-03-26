@@ -1129,6 +1129,94 @@
                                 <section class="normal markdown-section">
                                 
                                 <h1 id="54-&#x8BBE;&#x8BA1;&#x6A21;&#x5F0F;&#xFF1A;&#x7ED3;&#x6784;&#x578B;&#x6A21;&#x5F0F;">5.4 &#x8BBE;&#x8BA1;&#x6A21;&#x5F0F;&#xFF1A;&#x7ED3;&#x6784;&#x578B;&#x6A21;&#x5F0F;</h1>
+<ul>
+<li>&#x5E38;&#x89C1;&#x7ED3;&#x6784;&#x578B;&#x8BBE;&#x8BA1;&#x6A21;&#x5F0F;<ul>
+<li>&#x88C5;&#x9970;&#x5668;&#x6A21;&#x5F0F;Decorator&#xFF1A;&#x65E0;&#x9700;&#x5B50;&#x7C7B;&#x5316;&#x6269;&#x5C55;&#x5BF9;&#x8C61;&#x529F;&#x80FD;</li>
+<li>&#x4EE3;&#x7406;&#x6A21;&#x5F0F;Proxy&#xFF1A;&#x628A;&#x4E00;&#x4E2A;&#x5BF9;&#x8C61;&#x7684;&#x64CD;&#x4F5C;&#x4EE3;&#x7406;&#x5230;&#x53E6;&#x4E00;&#x4E2A;&#x5BF9;&#x8C61;&#xFF0C;&#x4F7F;&#x7528;deque&#x5B9E;&#x73B0;stack&#x7B49;&#x5C31;&#x662F;</li>
+<li>&#x9002;&#x914D;&#x5668;&#x6A21;&#x5F0F;Adapter&#xFF1A;&#x901A;&#x8FC7;&#x4E00;&#x4E2A;&#x95F4;&#x63A5;&#x5C42;&#x9002;&#x914D;&#x7EDF;&#x4E00;&#x63A5;&#x53E3;</li>
+<li>&#x5916;&#x89C2;&#x6A21;&#x5F0F;Facade&#xFF1A;&#x7B80;&#x5316;&#x590D;&#x6742;&#x5BF9;&#x8C61;&#x7684;&#x8BBF;&#x95EE;&#x95EE;&#x9898;</li>
+<li>&#x4EAB;&#x5143;&#x6A21;&#x5F0F;Flyweight&#xFF1A;&#x901A;&#x8FC7;&#x5BF9;&#x8C61;&#x590D;&#x7528;&#xFF08;&#x6C60;&#xFF09;&#x6539;&#x5584;&#x8D44;&#x6E90;&#x5229;&#x7528;&#xFF0C;&#x6BD4;&#x5982;&#x8FDE;&#x63A5;&#x6C60;</li>
+<li>Model-View-Controller&#xFF08;MVC)&#xFF1A;&#x89E3;&#x8026;&#x5C55;&#x793A;&#x5C42;&#x548C;&#x4E1A;&#x52A1;&#x903B;&#x8F91;</li>
+</ul>
+</li>
+<li><p>&#x4EE3;&#x7406;&#x6A21;&#x5F0F;</p>
+<ul>
+<li>&#x628A;&#x4E00;&#x4E2A;&#x5BF9;&#x8C61;&#x7684;&#x64CD;&#x4F5C;&#x4EE3;&#x7406;&#x5230;&#x53E6;&#x4E00;&#x4E2A;&#x5BF9;&#x8C61;</li>
+<li>&#x8FD9;&#x91CC;&#x53C8;&#x8981;&#x63D0;&#x5230;&#x6211;&#x4EEC;&#x4E4B;&#x524D;&#x5B9E;&#x73B0;&#x7684;stack/Queue&#xFF0C;&#x628A;&#x64CD;&#x4F5C;&#x4EE3;&#x7406;&#x5230;deque</li>
+<li><p>&#x901A;&#x5E38;&#x4F7F;&#x7528;has-a&#x7EC4;&#x5408;&#x5173;&#x7CFB; </p>
+<pre class="language-"><code class="lang-python"><span class="token keyword">from</span> collections <span class="token keyword">import</span> deque
+
+<span class="token keyword">class</span> <span class="token class-name">Stack</span><span class="token punctuation">(</span><span class="token builtin">object</span><span class="token punctuation">)</span><span class="token punctuation">:</span>  <span class="token comment"># &#x4F7F;&#x7528;&#x7EC4;&#x5408;&#x7684;&#x4F8B;&#x5B50;</span>
+
+  <span class="token keyword">def</span> <span class="token function">__init__</span><span class="token punctuation">(</span>self<span class="token punctuation">)</span><span class="token punctuation">:</span>
+      self<span class="token punctuation">.</span>_deque <span class="token operator">=</span> deque<span class="token punctuation">(</span><span class="token punctuation">)</span>   <span class="token comment"># has a deque()</span>
+
+  <span class="token keyword">def</span> <span class="token function">push</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> value<span class="token punctuation">)</span><span class="token punctuation">:</span>
+      <span class="token keyword">return</span> self<span class="token punctuation">.</span>_deque<span class="token punctuation">.</span>append<span class="token punctuation">(</span>value<span class="token punctuation">)</span>
+
+  <span class="token keyword">def</span> <span class="token function">pop</span><span class="token punctuation">(</span>self<span class="token punctuation">)</span><span class="token punctuation">:</span>
+      <span class="token keyword">return</span> self<span class="token punctuation">.</span>_deque<span class="token punctuation">.</span>pop<span class="token punctuation">(</span><span class="token punctuation">)</span>
+
+  <span class="token keyword">def</span> <span class="token function">empty</span><span class="token punctuation">(</span>self<span class="token punctuation">)</span><span class="token punctuation">:</span>
+      <span class="token keyword">return</span> <span class="token builtin">len</span><span class="token punctuation">(</span>self<span class="token punctuation">.</span>_deque<span class="token punctuation">)</span> <span class="token operator">==</span> <span class="token number">0</span>
+
+  <span class="token keyword">def</span> <span class="token function">__iter__</span><span class="token punctuation">(</span>self<span class="token punctuation">)</span><span class="token punctuation">:</span>
+      res <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token punctuation">]</span>
+      <span class="token keyword">for</span> i <span class="token keyword">in</span> self<span class="token punctuation">.</span>_deque<span class="token punctuation">:</span>
+          res<span class="token punctuation">.</span>append<span class="token punctuation">(</span>i<span class="token punctuation">)</span>
+      <span class="token keyword">for</span> i <span class="token keyword">in</span> <span class="token builtin">reversed</span><span class="token punctuation">(</span>res<span class="token punctuation">)</span><span class="token punctuation">:</span>
+          <span class="token keyword">yield</span> i
+
+s <span class="token operator">=</span> Stack<span class="token punctuation">(</span><span class="token punctuation">)</span>
+s<span class="token punctuation">.</span>push<span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">)</span>
+s<span class="token punctuation">.</span>push<span class="token punctuation">(</span><span class="token number">2</span><span class="token punctuation">)</span>
+<span class="token keyword">for</span> i <span class="token keyword">in</span> s<span class="token punctuation">:</span>
+  <span class="token keyword">print</span><span class="token punctuation">(</span>i<span class="token punctuation">)</span>
+</code></pre>
+</li>
+</ul>
+</li>
+<li><p>&#x9002;&#x914D;&#x5668;&#x6A21;&#x5F0F;</p>
+<ul>
+<li>&#x628A;&#x4E0D;&#x540C;&#x5BF9;&#x8C61;&#x7684;&#x63A5;&#x53E3;&#x9002;&#x914D;&#x5230;&#x540C;&#x4E00;&#x4E2A;&#x63A5;&#x53E3;</li>
+<li><p>&#x60F3;&#x8C61;&#x4E00;&#x4E2A;&#x591A;&#x529F;&#x80FD;&#x5145;&#x7535;&#x5934;&#xFF0C;&#x53EF;&#x4EE5;&#x7ED9;&#x4E0D;&#x540C;&#x7684;&#x7535;&#x5668;&#x5145;&#x7535;&#xFF0C;&#x5145;&#x5F53;&#x4E86;&#x9002;&#x914D;&#x5668;</p>
+<pre class="language-"><code class="lang-python"><span class="token comment"># &#x9002;&#x914D;&#x5668;&#x6A21;&#x5F0F;&#x7684;&#x4F8B;&#x5B50;</span>
+<span class="token keyword">class</span> <span class="token class-name">Dog</span><span class="token punctuation">(</span><span class="token builtin">object</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+  <span class="token keyword">def</span> <span class="token function">__init__</span><span class="token punctuation">(</span>self<span class="token punctuation">)</span><span class="token punctuation">:</span>
+      self<span class="token punctuation">.</span>name <span class="token operator">=</span> <span class="token string">&quot;Dog&quot;</span>
+
+  <span class="token keyword">def</span> <span class="token function">bark</span><span class="token punctuation">(</span>self<span class="token punctuation">)</span><span class="token punctuation">:</span>
+      <span class="token keyword">return</span> <span class="token string">&quot;woof!&quot;</span>
+
+<span class="token keyword">class</span> <span class="token class-name">Cat</span><span class="token punctuation">(</span><span class="token builtin">object</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+  <span class="token keyword">def</span> <span class="token function">__init__</span><span class="token punctuation">(</span>self<span class="token punctuation">)</span><span class="token punctuation">:</span>
+      self<span class="token punctuation">.</span>name <span class="token operator">=</span> <span class="token string">&quot;Cat&quot;</span>
+
+  <span class="token keyword">def</span> <span class="token function">meow</span><span class="token punctuation">(</span>self<span class="token punctuation">)</span><span class="token punctuation">:</span>
+      <span class="token keyword">return</span> <span class="token string">&quot;meow!&quot;</span>
+
+<span class="token keyword">class</span> <span class="token class-name">Adapter</span><span class="token punctuation">:</span>
+  <span class="token keyword">def</span> <span class="token function">__init__</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> obj<span class="token punctuation">,</span> <span class="token operator">**</span>adapted_methods<span class="token punctuation">)</span><span class="token punctuation">:</span>
+      <span class="token triple-quoted-string string">&quot;&quot;&quot;We set the adapted methods in the object&apos;s dict&quot;&quot;&quot;</span>
+      self<span class="token punctuation">.</span>obj <span class="token operator">=</span> obj
+      self<span class="token punctuation">.</span>__dict__<span class="token punctuation">.</span>update<span class="token punctuation">(</span>adapted_methods<span class="token punctuation">)</span>
+
+  <span class="token keyword">def</span> <span class="token function">__getattr__</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> attr<span class="token punctuation">)</span><span class="token punctuation">:</span>
+      <span class="token triple-quoted-string string">&quot;&quot;&quot;All non-adapted calls are passed to the object&quot;&quot;&quot;</span>
+      <span class="token keyword">return</span> <span class="token builtin">getattr</span><span class="token punctuation">(</span>self<span class="token punctuation">.</span>obj<span class="token punctuation">,</span> attr<span class="token punctuation">)</span>
+
+objects <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token punctuation">]</span>
+dog <span class="token operator">=</span> Dog<span class="token punctuation">(</span><span class="token punctuation">)</span>
+objects<span class="token punctuation">.</span>append<span class="token punctuation">(</span>Adapter<span class="token punctuation">(</span>dog<span class="token punctuation">,</span> make_noise<span class="token operator">=</span>dog<span class="token punctuation">.</span>bark<span class="token punctuation">)</span><span class="token punctuation">)</span>
+cat <span class="token operator">=</span> Cat<span class="token punctuation">(</span><span class="token punctuation">)</span>
+objects<span class="token punctuation">.</span>append<span class="token punctuation">(</span>Adapter<span class="token punctuation">(</span>cat<span class="token punctuation">,</span> make_noise<span class="token operator">=</span>cat<span class="token punctuation">.</span>meow<span class="token punctuation">)</span><span class="token punctuation">)</span>
+<span class="token keyword">for</span> obj <span class="token keyword">in</span> objects<span class="token punctuation">:</span>
+  <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">&quot;A {0} goes {1}&quot;</span><span class="token punctuation">.</span><span class="token builtin">format</span><span class="token punctuation">(</span>obj<span class="token punctuation">.</span>name<span class="token punctuation">,</span> obj<span class="token punctuation">.</span>make_noise<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+</code></pre>
+</li>
+</ul>
+</li>
+</ul>
 
                                 
                                 </section>
@@ -1172,7 +1260,7 @@
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"5.4 设计模式：结构型模式","level":"1.6.4","depth":2,"next":{"title":"5.5 设计模式：行为型模式","level":"1.6.5","depth":2,"path":"chapter5/5.md","ref":"chapter5/5.md","articles":[]},"previous":{"title":"5.3 设计模式：创建型模式","level":"1.6.3","depth":2,"path":"chapter5/3.md","ref":"chapter5/3.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":["expandable-chapters-small","splitter","-lunr","-search","search-plus","prism","-highlight","emphasize","livereload"],"pluginsConfig":{"prism":{},"emphasize":{},"livereload":{},"splitter":{},"fontsettings":{"theme":"white","family":"sans","size":2},"expandable-chapters-small":{},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"search-plus":{}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"chapter5/4.md","mtime":"2019-03-19T14:57:04.556Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2019-03-22T09:32:49.014Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"5.4 设计模式：结构型模式","level":"1.6.4","depth":2,"next":{"title":"5.5 设计模式：行为型模式","level":"1.6.5","depth":2,"path":"chapter5/5.md","ref":"chapter5/5.md","articles":[]},"previous":{"title":"5.3 设计模式：创建型模式","level":"1.6.3","depth":2,"path":"chapter5/3.md","ref":"chapter5/3.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":["expandable-chapters-small","splitter","-lunr","-search","search-plus","prism","-highlight","emphasize","livereload"],"pluginsConfig":{"prism":{},"emphasize":{},"livereload":{},"splitter":{},"fontsettings":{"theme":"white","family":"sans","size":2},"expandable-chapters-small":{},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"search-plus":{}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"chapter5/4.md","mtime":"2019-03-25T07:48:22.529Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2019-03-26T02:15:04.815Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>

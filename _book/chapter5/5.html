@@ -1129,6 +1129,122 @@
                                 <section class="normal markdown-section">
                                 
                                 <h1 id="55-&#x8BBE;&#x8BA1;&#x6A21;&#x5F0F;&#xFF1A;&#x884C;&#x4E3A;&#x578B;&#x6A21;&#x5F0F;">5.5 &#x8BBE;&#x8BA1;&#x6A21;&#x5F0F;&#xFF1A;&#x884C;&#x4E3A;&#x578B;&#x6A21;&#x5F0F;</h1>
+<ul>
+<li>&#x5E38;&#x89C1;&#x884C;&#x4E3A;&#x578B;&#x8BBE;&#x8BA1;&#x6A21;&#x5F0F;<ul>
+<li>&#x8FED;&#x4EE3;&#x5668;&#x6A21;&#x5F0F;Iterator&#xFF1A;&#x901A;&#x8FC7;&#x7EDF;&#x4E00;&#x7684;&#x63A5;&#x53E3;&#x8FED;&#x4EE3;&#x5BF9;&#x8C61;</li>
+<li>&#x89C2;&#x5BDF;&#x8005;&#x6A21;&#x5F0F;Observer&#xFF1A;&#x5BF9;&#x8C61;&#x53D1;&#x751F;&#x6539;&#x53D8;&#x7684;&#x65F6;&#x5019;&#xFF0C;&#x89C2;&#x5BDF;&#x8005;&#x6267;&#x884C;&#x76F8;&#x5E94;&#x52A8;&#x4F5C;</li>
+<li>&#x7B56;&#x7565;&#x6A21;&#x5F0F;Stratry&#xFF1A;&#x9488;&#x5BF9;&#x4E0D;&#x540C;&#x89C4;&#x6A21;&#x8F93;&#x5165;&#x4F7F;&#x7528;&#x4E0D;&#x540C;&#x7684;&#x7B56;&#x7565;</li>
+</ul>
+</li>
+<li>&#x8FED;&#x4EE3;&#x5668;&#x6A21;&#x5F0F;<ul>
+<li>Python&#x5185;&#x7F6E;&#x5BF9;&#x8FED;&#x4EE3;&#x5668;&#x6A21;&#x5F0F;&#x7684;&#x652F;&#x6301;</li>
+<li>&#x6BD4;&#x5982;&#x6211;&#x4EEC;&#x53EF;&#x4EE5;&#x7528;for&#x904D;&#x5386;&#x5404;&#x79CD;Iterable&#x7684;&#x6570;&#x636E;&#x7C7B;&#x578B;</li>
+<li>Python&#x91CC;&#x53EF;&#x4EE5;&#x5B9E;&#x73B0;__next__&#x548C;__iter__&#x5B9E;&#x73B0;&#x8FED;&#x4EE3;&#x5668; </li>
+</ul>
+</li>
+<li><p>&#x89C2;&#x5BDF;&#x8005;&#x6A21;&#x5F0F;</p>
+<ul>
+<li>&#x53D1;&#x5E03;&#x8BA2;&#x9605;&#x662F;&#x4E00;&#x79CD;&#x6700;&#x5E38;&#x89C1;&#x7684;&#x5B9E;&#x73B0;&#x65B9;&#x5F0F;</li>
+<li>&#x53D1;&#x5E03;&#x8BA2;&#x9605;&#x7528;&#x4E8E;&#x89E3;&#x8026;&#x903B;&#x8F91;</li>
+<li><p>&#x53EF;&#x4EE5;&#x901A;&#x8FC7;&#x56DE;&#x8C03;&#x7B49;&#x65B9;&#x5F0F;&#x5B9E;&#x73B0;&#xFF0C;&#x5F53;&#x53D1;&#x751F;&#x4E8B;&#x4EF6;&#x65F6;&#xFF0C;&#x8C03;&#x7528;&#x76F8;&#x5E94;&#x7684;&#x56DE;&#x8C03;&#x51FD;&#x6570; </p>
+<pre class="language-"><code class="lang-python"><span class="token comment"># &#x53D1;&#x5E03;&#x8BA2;&#x9605;&#x6A21;&#x5F0F;</span>
+
+<span class="token keyword">class</span> <span class="token class-name">Publisher</span><span class="token punctuation">:</span>  <span class="token comment"># &#x53D1;&#x5E03;&#x8005;</span>
+  <span class="token keyword">def</span> <span class="token function">__init__</span><span class="token punctuation">(</span>self<span class="token punctuation">)</span><span class="token punctuation">:</span>
+      self<span class="token punctuation">.</span>observers <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token punctuation">]</span>  <span class="token comment"># &#x89C2;&#x5BDF;&#x8005;</span>
+
+  <span class="token keyword">def</span> <span class="token function">add</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> observer<span class="token punctuation">)</span><span class="token punctuation">:</span>  <span class="token comment"># &#x52A0;&#x5165;&#x89C2;&#x5BDF;&#x8005;</span>
+      <span class="token keyword">if</span> observer <span class="token operator">not</span> <span class="token keyword">in</span> self<span class="token punctuation">.</span>observers<span class="token punctuation">:</span>
+          self<span class="token punctuation">.</span>observers<span class="token punctuation">.</span>append<span class="token punctuation">(</span>observer<span class="token punctuation">)</span>
+      <span class="token keyword">else</span><span class="token punctuation">:</span>
+          <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">&apos;Failed to add : {}&apos;</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token builtin">format</span><span class="token punctuation">(</span>observer<span class="token punctuation">)</span>
+
+  <span class="token keyword">def</span> <span class="token function">remove</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> observer<span class="token punctuation">)</span><span class="token punctuation">:</span>  <span class="token comment"># &#x79FB;&#x9664;&#x89C2;&#x5BDF;&#x8005;</span>
+      <span class="token keyword">try</span><span class="token punctuation">:</span>
+          self<span class="token punctuation">.</span>observers<span class="token punctuation">.</span>remove<span class="token punctuation">(</span>observer<span class="token punctuation">)</span>
+      <span class="token keyword">except</span> ValueError<span class="token punctuation">:</span>
+          <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">&apos;Failed to remove : {}&apos;</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token builtin">format</span><span class="token punctuation">(</span>observer<span class="token punctuation">)</span>
+
+  <span class="token keyword">def</span> <span class="token function">notify</span><span class="token punctuation">(</span>self<span class="token punctuation">)</span><span class="token punctuation">:</span>   <span class="token comment"># &#x8C03;&#x7528;&#x89C2;&#x5BDF;&#x8005;&#x7684;&#x56DE;&#x8C03;</span>
+      <span class="token punctuation">[</span>o<span class="token punctuation">.</span>notify_by<span class="token punctuation">(</span>self<span class="token punctuation">)</span> <span class="token keyword">for</span> o <span class="token keyword">in</span> self<span class="token punctuation">.</span>observers<span class="token punctuation">]</span>
+
+<span class="token keyword">class</span> <span class="token class-name">Formatter</span><span class="token punctuation">(</span>Publisher<span class="token punctuation">)</span><span class="token punctuation">:</span>  <span class="token comment"># &#x7EE7;&#x627F;&#x81EA;&#x53D1;&#x5E03;&#x8005;</span>
+  <span class="token keyword">def</span> <span class="token function">__init__</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> name<span class="token punctuation">)</span><span class="token punctuation">:</span>
+      <span class="token builtin">super</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span>__init__<span class="token punctuation">(</span><span class="token punctuation">)</span>
+      self<span class="token punctuation">.</span>name <span class="token operator">=</span> name
+      self<span class="token punctuation">.</span>_data <span class="token operator">=</span> <span class="token number">0</span>
+
+  @<span class="token builtin">property</span>
+  <span class="token keyword">def</span> <span class="token function">data</span><span class="token punctuation">(</span>self<span class="token punctuation">)</span><span class="token punctuation">:</span>
+      <span class="token keyword">return</span> self<span class="token punctuation">.</span>_data
+
+  @data<span class="token punctuation">.</span>setter
+  <span class="token keyword">def</span> <span class="token function">data</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> new_value<span class="token punctuation">)</span><span class="token punctuation">:</span>
+      self<span class="token punctuation">.</span>_data <span class="token operator">=</span> <span class="token builtin">int</span><span class="token punctuation">(</span>new_value<span class="token punctuation">)</span>
+      self<span class="token punctuation">.</span>notify<span class="token punctuation">(</span><span class="token punctuation">)</span>    <span class="token comment"># data &#x5728;&#x88AB;&#x5408;&#x6CD5;&#x8D4B;&#x503C;&#x4EE5;&#x540E;&#x4F1A;&#x6267;&#x884C;notify</span>
+
+<span class="token keyword">class</span> <span class="token class-name">BinaryFormatter</span><span class="token punctuation">:</span>
+  <span class="token triple-quoted-string string">&quot;&quot;&quot; &#x8BA2;&#x9605;&#x8005; &quot;&quot;&quot;</span>
+
+  <span class="token keyword">def</span> <span class="token function">notify_by</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> publisher<span class="token punctuation">)</span><span class="token punctuation">:</span>
+      <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">&quot;{}: &apos;{}&apos; has now bin data = {}&quot;</span><span class="token punctuation">.</span><span class="token builtin">format</span><span class="token punctuation">(</span>
+          <span class="token builtin">type</span><span class="token punctuation">(</span>self<span class="token punctuation">)</span><span class="token punctuation">.</span>__name__<span class="token punctuation">,</span>
+          publisher<span class="token punctuation">.</span>name<span class="token punctuation">,</span>
+          <span class="token builtin">bin</span><span class="token punctuation">(</span>publisher<span class="token punctuation">.</span>data<span class="token punctuation">)</span><span class="token punctuation">)</span>
+      <span class="token punctuation">)</span>
+
+<span class="token keyword">def</span> <span class="token function">test</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+  df <span class="token operator">=</span> Formatter<span class="token punctuation">(</span><span class="token string">&apos;formatter&apos;</span><span class="token punctuation">)</span> <span class="token comment"># &#x53D1;&#x5E03;&#x8005;</span>
+  bf <span class="token operator">=</span> BinaryFormatter<span class="token punctuation">(</span><span class="token punctuation">)</span>  <span class="token comment"># &#x8BA2;&#x9605;&#x8005;</span>
+  df<span class="token punctuation">.</span>add<span class="token punctuation">(</span>bf<span class="token punctuation">)</span>  <span class="token comment"># &#x6DFB;&#x52A0;&#x8BA2;&#x9605;&#x8005;</span>
+  df<span class="token punctuation">.</span>data <span class="token operator">=</span> <span class="token number">3</span>  <span class="token comment"># &#x8BBE;&#x7F6E;&#x7684;&#x65F6;&#x5019;&#x8C03;&#x7528;&#x8BA2;&#x9605;&#x8005;&#x7684;notify_by</span>
+</code></pre>
+</li>
+</ul>
+</li>
+<li><p>&#x7B56;&#x7565;&#x6A21;&#x5F0F;</p>
+<ul>
+<li>&#x6839;&#x636E;&#x4E0D;&#x540C;&#x7684;&#x8F93;&#x5165;&#x91C7;&#x7528;&#x4E0D;&#x540C;&#x7684;&#x7B56;&#x7565;</li>
+<li>&#x6BD4;&#x5982;&#x4E70;&#x4E1C;&#x897F;&#x8D85;&#x8FC7;10&#x4E2A;&#x6253;&#x516B;&#x6298;&#xFF0C;&#x8D85;&#x8FC7;20&#x4E2A;&#x6253;&#x4E03;&#x6298;</li>
+<li><p>&#x5BF9;&#x5916;&#x66B4;&#x9732;&#x7EDF;&#x4E00;&#x7684;&#x63A5;&#x53E3;&#xFF0C;&#x5185;&#x90E8;&#x91C7;&#x7528;&#x4E0D;&#x540C;&#x7684;&#x7B56;&#x7565;&#x8BA1;&#x7B97;</p>
+<pre class="language-"><code class="lang-python"><span class="token comment"># &#x7B56;&#x7565;&#x6A21;&#x5F0F;</span>
+
+<span class="token keyword">class</span> <span class="token class-name">Order</span><span class="token punctuation">:</span>
+  <span class="token keyword">def</span> <span class="token function">__init__</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> price<span class="token punctuation">,</span> discount_strategy<span class="token operator">=</span><span class="token boolean">None</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+      self<span class="token punctuation">.</span>price <span class="token operator">=</span> price
+      self<span class="token punctuation">.</span>discount_strategy <span class="token operator">=</span> discount_strategy
+
+  <span class="token keyword">def</span> <span class="token function">price_after_discount</span><span class="token punctuation">(</span>self<span class="token punctuation">)</span><span class="token punctuation">:</span>
+      <span class="token keyword">if</span> self<span class="token punctuation">.</span>discount_strategy<span class="token punctuation">:</span>
+          discount <span class="token operator">=</span> self<span class="token punctuation">.</span>discount_strategy<span class="token punctuation">(</span>self<span class="token punctuation">)</span>
+      <span class="token keyword">else</span><span class="token punctuation">:</span>
+          discount <span class="token operator">=</span> <span class="token number">0</span>
+      <span class="token keyword">return</span> self<span class="token punctuation">.</span>price <span class="token operator">-</span> discount
+
+  <span class="token keyword">def</span> <span class="token function">__repr__</span><span class="token punctuation">(</span>self<span class="token punctuation">)</span><span class="token punctuation">:</span>
+      fmt <span class="token operator">=</span> <span class="token string">&quot;&lt;Price: {}, price after discount: {}&gt;&quot;</span>
+      <span class="token keyword">return</span> fmt<span class="token punctuation">.</span><span class="token builtin">format</span><span class="token punctuation">(</span>
+          self<span class="token punctuation">.</span>price<span class="token punctuation">,</span> self<span class="token punctuation">.</span>price_after_discount<span class="token punctuation">(</span><span class="token punctuation">)</span>
+      <span class="token punctuation">)</span>
+
+<span class="token keyword">def</span> <span class="token function">ten_percent_discount</span><span class="token punctuation">(</span>order<span class="token punctuation">)</span><span class="token punctuation">:</span>
+  <span class="token keyword">return</span> order<span class="token punctuation">.</span>price <span class="token operator">*</span> <span class="token number">0.10</span>
+
+<span class="token keyword">def</span> <span class="token function">on_sale_discount</span><span class="token punctuation">(</span>order<span class="token punctuation">)</span><span class="token punctuation">:</span>
+  <span class="token keyword">return</span> order<span class="token punctuation">.</span>price <span class="token operator">*</span> <span class="token number">0.25</span> <span class="token operator">+</span> <span class="token number">20</span>
+
+<span class="token keyword">def</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+  order0 <span class="token operator">=</span> Order<span class="token punctuation">(</span><span class="token number">100</span><span class="token punctuation">)</span>
+  order1 <span class="token operator">=</span> Order<span class="token punctuation">(</span><span class="token number">100</span><span class="token punctuation">,</span> discount_strategy<span class="token operator">=</span>ten_percent_discount<span class="token punctuation">)</span>
+  order2 <span class="token operator">=</span> Order<span class="token punctuation">(</span><span class="token number">1000</span><span class="token punctuation">,</span> discount_strategy<span class="token operator">=</span>on_sale_discount<span class="token punctuation">)</span>
+  <span class="token keyword">print</span><span class="token punctuation">(</span>order0<span class="token punctuation">)</span>
+  <span class="token keyword">print</span><span class="token punctuation">(</span>order1<span class="token punctuation">)</span>
+  <span class="token keyword">print</span><span class="token punctuation">(</span>order2<span class="token punctuation">)</span>
+</code></pre>
+</li>
+</ul>
+</li>
+</ul>
 
                                 
                                 </section>
@@ -1172,7 +1288,7 @@
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"5.5 设计模式：行为型模式","level":"1.6.5","depth":2,"next":{"title":"5.6 Python函数式编程常考题","level":"1.6.6","depth":2,"path":"chapter5/6.md","ref":"chapter5/6.md","articles":[]},"previous":{"title":"5.4 设计模式：结构型模式","level":"1.6.4","depth":2,"path":"chapter5/4.md","ref":"chapter5/4.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":["expandable-chapters-small","splitter","-lunr","-search","search-plus","prism","-highlight","emphasize","livereload"],"pluginsConfig":{"prism":{},"emphasize":{},"livereload":{},"splitter":{},"fontsettings":{"theme":"white","family":"sans","size":2},"expandable-chapters-small":{},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"search-plus":{}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"chapter5/5.md","mtime":"2019-03-19T14:57:04.558Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2019-03-22T09:32:49.014Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"5.5 设计模式：行为型模式","level":"1.6.5","depth":2,"next":{"title":"5.6 Python函数式编程常考题","level":"1.6.6","depth":2,"path":"chapter5/6.md","ref":"chapter5/6.md","articles":[]},"previous":{"title":"5.4 设计模式：结构型模式","level":"1.6.4","depth":2,"path":"chapter5/4.md","ref":"chapter5/4.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":["expandable-chapters-small","splitter","-lunr","-search","search-plus","prism","-highlight","emphasize","livereload"],"pluginsConfig":{"prism":{},"emphasize":{},"livereload":{},"splitter":{},"fontsettings":{"theme":"white","family":"sans","size":2},"expandable-chapters-small":{},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"search-plus":{}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"chapter5/5.md","mtime":"2019-03-25T08:01:25.481Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2019-03-26T02:15:04.815Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>

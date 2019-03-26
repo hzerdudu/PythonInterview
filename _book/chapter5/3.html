@@ -1129,6 +1129,127 @@
                                 <section class="normal markdown-section">
                                 
                                 <h1 id="53-&#x8BBE;&#x8BA1;&#x6A21;&#x5F0F;&#xFF1A;&#x521B;&#x5EFA;&#x578B;&#x6A21;&#x5F0F;">5.3 &#x8BBE;&#x8BA1;&#x6A21;&#x5F0F;&#xFF1A;&#x521B;&#x5EFA;&#x578B;&#x6A21;&#x5F0F;</h1>
+<ul>
+<li>&#x5E38;&#x89C1;&#x521B;&#x5EFA;&#x578B;&#x8BBE;&#x8BA1;&#x6A21;&#x5F0F;<ul>
+<li>&#x5DE5;&#x5382;&#x6A21;&#x5F0F;Factory&#xFF1A;&#x89E3;&#x51B3;&#x5BF9;&#x8C61;&#x521B;&#x5EFA;&#x95EE;&#x9898;</li>
+<li>&#x6784;&#x9020;&#x6A21;&#x5F0F;Builder&#xFF1A;&#x63A7;&#x5236;&#x590D;&#x6742;&#x5BF9;&#x8C61;&#x7684;&#x521B;&#x5EFA;</li>
+<li>&#x539F;&#x578B;&#x6A21;&#x5F0F;Prototype&#xFF1A;&#x901A;&#x8FC7;&#x539F;&#x578B;&#x7684;&#x514B;&#x9686;&#x521B;&#x5EFA;&#x65B0;&#x7684;&#x5B9E;&#x4F8B;</li>
+<li>&#x5355;&#x4F8B;&#x6A21;&#x5F0F;Singleton&#xFF1A;&#x4E00;&#x4E2A;&#x7C7B;&#x53EA;&#x80FD;&#x521B;&#x5EFA;&#x540C;&#x4E00;&#x4E2A;&#x5BF9;&#x8C61;</li>
+<li>&#x5BF9;&#x8C61;&#x6C60;&#x6A21;&#x5F0F;Pool&#xFF1A;&#x9884;&#x5148;&#x5206;&#x914D;&#x540C;&#x4E00;&#x7C7B;&#x578B;&#x7684;&#x4E00;&#x7EC4;&#x5B9E;&#x4F8B;</li>
+<li>&#x60F0;&#x6027;&#x8BA1;&#x7B97;&#x6A21;&#x5F0F;Lazy Evaluation&#xFF1A;&#x5EF6;&#x8FDF;&#x8BA1;&#x7B97;&#xFF08;python&#x7684;property&#xFF09;</li>
+</ul>
+</li>
+<li><p>&#x5DE5;&#x5382;&#x6A21;&#x5F0F;</p>
+<ul>
+<li>&#x89E3;&#x51B3;&#x5BF9;&#x8C61;&#x521B;&#x5EFA;&#x95EE;&#x9898;</li>
+<li>&#x89E3;&#x8026;&#x5BF9;&#x8C61;&#x7684;&#x521B;&#x5EFA;&#x548C;&#x4F7F;&#x7528;</li>
+<li><p>&#x5305;&#x62EC;&#x5DE5;&#x5382;&#x65B9;&#x6CD5;&#x548C;&#x62BD;&#x8C61;&#x5DE5;&#x5382; </p>
+<pre class="language-"><code class="lang-python"><span class="token comment"># &#x4E00;&#x4E2A;&#x5DE5;&#x5382;&#x65B9;&#x6CD5;&#x7684;&#x4F8B;&#x5B50;</span>
+<span class="token keyword">class</span> <span class="token class-name">DogToy</span><span class="token punctuation">:</span>
+  <span class="token keyword">def</span> <span class="token function">speak</span><span class="token punctuation">(</span>self<span class="token punctuation">)</span><span class="token punctuation">:</span>
+      <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">&quot;wang wang&quot;</span><span class="token punctuation">)</span>
+
+<span class="token keyword">class</span> <span class="token class-name">CatToy</span><span class="token punctuation">:</span>
+  <span class="token keyword">def</span> <span class="token function">speak</span><span class="token punctuation">(</span>self<span class="token punctuation">)</span><span class="token punctuation">:</span>
+      <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">&quot;miao miao&quot;</span><span class="token punctuation">)</span>
+
+<span class="token keyword">def</span> <span class="token function">toy_factory</span><span class="token punctuation">(</span>toy_type<span class="token punctuation">)</span><span class="token punctuation">:</span>
+  <span class="token keyword">if</span> toy_type <span class="token operator">==</span> <span class="token string">&apos;dog&apos;</span><span class="token punctuation">:</span>
+      <span class="token keyword">return</span> DogToy<span class="token punctuation">(</span><span class="token punctuation">)</span>
+  <span class="token keyword">elif</span> toy_type <span class="token operator">==</span> <span class="token string">&apos;cat&apos;</span><span class="token punctuation">:</span>
+      <span class="token keyword">return</span> CatToy<span class="token punctuation">(</span><span class="token punctuation">)</span>
+</code></pre>
+</li>
+</ul>
+</li>
+<li><p>&#x6784;&#x9020;&#x6A21;&#x5F0F;</p>
+<ul>
+<li>&#x7528;&#x6765;&#x63A7;&#x5236;&#x590D;&#x6742;&#x5BF9;&#x8C61;&#x7684;&#x6784;&#x9020;</li>
+<li><p>&#x521B;&#x5EFA;&#x548C;&#x8868;&#x793A;&#x5206;&#x79BB;&#x3002;</p>
+<ul>
+<li>&#x6BD4;&#x5982;&#x4F60;&#x8981;&#x4E70;&#x7535;&#x8111;&#xFF0C;&#x5DE5;&#x5382;&#x6A21;&#x5F0F;&#x76F4;&#x63A5;&#x7ED9;&#x4F60;&#x9700;&#x8981;&#x7684;&#x7535;&#x8111;</li>
+<li><p>&#x4F46;&#x662F;&#x6784;&#x9020;&#x6A21;&#x5F0F;&#x5141;&#x8BB8;&#x4F60;&#x81EA;&#x5DF1;&#x5B9A;&#x4E49;&#x7535;&#x8111;&#x7684;&#x914D;&#x7F6E;&#xFF0C;&#x7EC4;&#x88C5;&#x5B8C;&#x6210;&#x540E;&#x7ED9;&#x4F60;</p>
+<pre class="language-"><code class="lang-python"><span class="token comment"># &#x4E00;&#x4E2A;&#x6784;&#x9020;&#x6A21;&#x5F0F;&#x7684;&#x4F8B;&#x5B50;</span>
+<span class="token keyword">class</span> <span class="token class-name">Computer</span><span class="token punctuation">:</span>
+  <span class="token keyword">def</span> <span class="token function">__init__</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> serial_number<span class="token punctuation">)</span><span class="token punctuation">:</span>
+      self<span class="token punctuation">.</span>serial <span class="token operator">=</span> serial_number
+      self<span class="token punctuation">.</span>memory <span class="token operator">=</span> <span class="token boolean">None</span>  <span class="token comment"># in gigabytes</span>
+      self<span class="token punctuation">.</span>hdd <span class="token operator">=</span> <span class="token boolean">None</span>  <span class="token comment"># in gigabytes</span>
+      self<span class="token punctuation">.</span>gpu <span class="token operator">=</span> <span class="token boolean">None</span>
+
+  <span class="token keyword">def</span> <span class="token function">__str__</span><span class="token punctuation">(</span>self<span class="token punctuation">)</span><span class="token punctuation">:</span>
+      info <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token string">&apos;Memory: {}GB&apos;</span><span class="token punctuation">.</span><span class="token builtin">format</span><span class="token punctuation">(</span>self<span class="token punctuation">.</span>memory<span class="token punctuation">)</span><span class="token punctuation">,</span>
+              <span class="token string">&apos;Hard Disk: {}GB&apos;</span><span class="token punctuation">.</span><span class="token builtin">format</span><span class="token punctuation">(</span>self<span class="token punctuation">.</span>hdd<span class="token punctuation">)</span><span class="token punctuation">,</span>
+              <span class="token string">&apos;Graphics Card: {}&apos;</span><span class="token punctuation">.</span><span class="token builtin">format</span><span class="token punctuation">(</span>self<span class="token punctuation">.</span>gpu<span class="token punctuation">)</span><span class="token punctuation">)</span>
+      <span class="token keyword">return</span> <span class="token string">&apos;\n&apos;</span><span class="token punctuation">.</span>join<span class="token punctuation">(</span>info<span class="token punctuation">)</span>
+
+<span class="token keyword">class</span> <span class="token class-name">ComputerBuilder</span><span class="token punctuation">:</span>
+  <span class="token keyword">def</span> <span class="token function">__init__</span><span class="token punctuation">(</span>self<span class="token punctuation">)</span><span class="token punctuation">:</span>
+      self<span class="token punctuation">.</span>computer <span class="token operator">=</span> Computer<span class="token punctuation">(</span><span class="token string">&apos;AG23385193&apos;</span><span class="token punctuation">)</span>
+
+  <span class="token keyword">def</span> <span class="token function">configure_memory</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> amount<span class="token punctuation">)</span><span class="token punctuation">:</span>
+      self<span class="token punctuation">.</span>computer<span class="token punctuation">.</span>memory <span class="token operator">=</span> amount
+
+  <span class="token keyword">def</span> <span class="token function">configure_hdd</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> amount<span class="token punctuation">)</span><span class="token punctuation">:</span>
+      self<span class="token punctuation">.</span>computer<span class="token punctuation">.</span>hdd <span class="token operator">=</span> amount
+
+  <span class="token keyword">def</span> <span class="token function">configure_gpu</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> gpu_model<span class="token punctuation">)</span><span class="token punctuation">:</span>
+      self<span class="token punctuation">.</span>computer<span class="token punctuation">.</span>gpu <span class="token operator">=</span> gpu_model
+
+<span class="token keyword">class</span> <span class="token class-name">HardwareEngineer</span><span class="token punctuation">:</span>
+  <span class="token keyword">def</span> <span class="token function">__init__</span><span class="token punctuation">(</span>self<span class="token punctuation">)</span><span class="token punctuation">:</span>
+      self<span class="token punctuation">.</span>builder <span class="token operator">=</span> <span class="token boolean">None</span>
+
+  <span class="token keyword">def</span> <span class="token function">construct_computer</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> memory<span class="token punctuation">,</span> hdd<span class="token punctuation">,</span> gpu<span class="token punctuation">)</span><span class="token punctuation">:</span>
+      self<span class="token punctuation">.</span>builder <span class="token operator">=</span> ComputerBuilder<span class="token punctuation">(</span><span class="token punctuation">)</span>
+      <span class="token punctuation">[</span>step <span class="token keyword">for</span> step <span class="token keyword">in</span> <span class="token punctuation">(</span>self<span class="token punctuation">.</span>builder<span class="token punctuation">.</span>configure_memory<span class="token punctuation">(</span>memory<span class="token punctuation">)</span><span class="token punctuation">,</span>
+                         self<span class="token punctuation">.</span>builder<span class="token punctuation">.</span>configure_hdd<span class="token punctuation">(</span>hdd<span class="token punctuation">)</span><span class="token punctuation">,</span>
+                         self<span class="token punctuation">.</span>builder<span class="token punctuation">.</span>configure_gpu<span class="token punctuation">(</span>gpu<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">]</span>
+  @<span class="token builtin">property</span>
+  <span class="token keyword">def</span> <span class="token function">computer</span><span class="token punctuation">(</span>self<span class="token punctuation">)</span><span class="token punctuation">:</span>
+      <span class="token keyword">return</span> self<span class="token punctuation">.</span>builder<span class="token punctuation">.</span>computer
+
+<span class="token comment"># &#x4F7F;&#x7528;buidler&#xFF0C;&#x53EF;&#x4EE5;&#x521B;&#x5EFA;&#x591A;&#x4E2A;builder&#x7C7B;&#x5B9E;&#x73B0;&#x4E0D;&#x540C;&#x7684;&#x7EC4;&#x88C5;&#x65B9;&#x5F0F;</span>
+engineer <span class="token operator">=</span> HardwareEngineer<span class="token punctuation">(</span><span class="token punctuation">)</span>
+engineer<span class="token punctuation">.</span>construct_computer<span class="token punctuation">(</span>hdd<span class="token operator">=</span><span class="token number">500</span><span class="token punctuation">,</span> memory<span class="token operator">=</span><span class="token number">8</span><span class="token punctuation">,</span> gpu<span class="token operator">=</span><span class="token string">&apos;GeForce GTX 650 Ti&apos;</span><span class="token punctuation">)</span>
+computer <span class="token operator">=</span> engineer<span class="token punctuation">.</span>computer
+<span class="token keyword">print</span><span class="token punctuation">(</span>computer<span class="token punctuation">)</span>
+</code></pre>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>&#x539F;&#x578B;&#x6A21;&#x5F0F;<ul>
+<li>&#x901A;&#x8FC7;&#x514B;&#x9686;&#x539F;&#x578B;&#x6765;&#x521B;&#x5EFA;&#x65B0;&#x7684;&#x5B9E;&#x4F8B;</li>
+<li>&#x53EF;&#x4EE5;&#x4F7F;&#x7528;&#x76F8;&#x540C;&#x7684;&#x539F;&#x578B;&#xFF0C;&#x901A;&#x8FC7;&#x4FEE;&#x6539;&#x90E8;&#x5206;&#x5C5E;&#x6027;&#x6765;&#x521B;&#x5EFA;&#x65B0;&#x7684;&#x5B9E;&#x4F8B;</li>
+<li>&#x7528;&#x9014;&#xFF1A;&#x5BF9;&#x4E8E;&#x4E00;&#x4E9B;&#x521B;&#x5EFA;&#x5B9E;&#x4F8B;&#x5F00;&#x9500;&#x6BD4;&#x8F83;&#x9AD8;&#x7684;&#x5730;&#x65B9;&#x53EF;&#x4EE5;&#x4F7F;&#x7528;&#x539F;&#x578B;&#x6A21;&#x5F0F;</li>
+</ul>
+</li>
+<li><p>&#x5355;&#x4F8B;&#x6A21;&#x5F0F;</p>
+<ul>
+<li>&#x4E00;&#x4E2A;&#x7C7B;&#x521B;&#x5EFA;&#x51FA;&#x6765;&#x7684;&#x5BF9;&#x8C61;&#x90FD;&#x662F;&#x540C;&#x4E00;&#x4E2A;</li>
+<li>Python&#x7684;&#x6A21;&#x5757;&#x5176;&#x5B9E;&#x5C31;&#x662F;&#x5355;&#x4F8B;&#x7684;&#xFF0C;&#x53EA;&#x4F1A;&#x5BFC;&#x5165;&#x4E00;&#x6B21;</li>
+<li><p>&#x4F7F;&#x7528;&#x5171;&#x4EAB;&#x540C;&#x4E00;&#x4E2A;&#x5B9E;&#x4F8B;&#x7684;&#x65B9;&#x5F0F;&#x6765;&#x521B;&#x5EFA;&#x5355;&#x4F8B;&#x6A21;&#x5F0F; </p>
+<pre class="language-"><code class="lang-python"><span class="token comment"># &#x5355;&#x4F8B;&#x6A21;&#x5F0F;</span>
+<span class="token keyword">class</span> <span class="token class-name">Singleton</span><span class="token punctuation">:</span>
+  <span class="token keyword">def</span> <span class="token function">__new__</span><span class="token punctuation">(</span>cls<span class="token punctuation">,</span> <span class="token operator">*</span>args<span class="token punctuation">,</span> <span class="token operator">**</span>kwargs<span class="token punctuation">)</span><span class="token punctuation">:</span>
+      <span class="token keyword">if</span> <span class="token operator">not</span> <span class="token builtin">hasattr</span><span class="token punctuation">(</span>cls<span class="token punctuation">,</span> <span class="token string">&apos;_instance&apos;</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+          _instance <span class="token operator">=</span> <span class="token builtin">super</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span>__new__<span class="token punctuation">(</span>cls<span class="token punctuation">,</span> <span class="token operator">*</span>args<span class="token punctuation">,</span> <span class="token operator">**</span>kwargs<span class="token punctuation">)</span>
+          cls<span class="token punctuation">.</span>_instance <span class="token operator">=</span> _instance
+      <span class="token keyword">return</span> cls<span class="token punctuation">.</span>_instance
+
+<span class="token keyword">class</span> <span class="token class-name">MyClass</span><span class="token punctuation">(</span>Singleton<span class="token punctuation">)</span><span class="token punctuation">:</span>
+  <span class="token keyword">pass</span>
+
+c1 <span class="token operator">=</span> MyClass<span class="token punctuation">(</span><span class="token punctuation">)</span>
+c2 <span class="token operator">=</span> MyClass<span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token keyword">assert</span> c1 <span class="token keyword">is</span> c2  <span class="token comment"># &#x5355;&#x4F8B;&#x7684;&#xFF0C;c1 c2 &#x540C;&#x4E00;&#x4E2A;&#x5B9E;&#x4F8B;</span>
+</code></pre>
+</li>
+</ul>
+</li>
+</ul>
 
                                 
                                 </section>
@@ -1172,7 +1293,7 @@
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"5.3 设计模式：创建型模式","level":"1.6.3","depth":2,"next":{"title":"5.4 设计模式：结构型模式","level":"1.6.4","depth":2,"path":"chapter5/4.md","ref":"chapter5/4.md","articles":[]},"previous":{"title":"5.2 装饰器面试常考题","level":"1.6.2","depth":2,"path":"chapter5/2.md","ref":"chapter5/2.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":["expandable-chapters-small","splitter","-lunr","-search","search-plus","prism","-highlight","emphasize","livereload"],"pluginsConfig":{"prism":{},"emphasize":{},"livereload":{},"splitter":{},"fontsettings":{"theme":"white","family":"sans","size":2},"expandable-chapters-small":{},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"search-plus":{}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"chapter5/3.md","mtime":"2019-03-19T14:57:04.554Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2019-03-22T09:32:49.014Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"5.3 设计模式：创建型模式","level":"1.6.3","depth":2,"next":{"title":"5.4 设计模式：结构型模式","level":"1.6.4","depth":2,"path":"chapter5/4.md","ref":"chapter5/4.md","articles":[]},"previous":{"title":"5.2 装饰器面试常考题","level":"1.6.2","depth":2,"path":"chapter5/2.md","ref":"chapter5/2.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":["expandable-chapters-small","splitter","-lunr","-search","search-plus","prism","-highlight","emphasize","livereload"],"pluginsConfig":{"prism":{},"emphasize":{},"livereload":{},"splitter":{},"fontsettings":{"theme":"white","family":"sans","size":2},"expandable-chapters-small":{},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"search-plus":{}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"chapter5/3.md","mtime":"2019-03-25T07:38:41.446Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2019-03-26T02:15:04.815Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>

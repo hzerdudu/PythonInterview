@@ -1129,6 +1129,59 @@
                                 <section class="normal markdown-section">
                                 
                                 <h1 id="73-&#x7F51;&#x7EDC;&#x7F16;&#x7A0B;&#x5E38;&#x8003;&#x9898;">7.3 &#x7F51;&#x7EDC;&#x7F16;&#x7A0B;&#x5E38;&#x8003;&#x9898;</h1>
+<ul>
+<li><p>TCP Socket&#x7F16;&#x7A0B;
+<img src="https://github.com/hzerdudu/Pictures/blob/master/tcpsocket.PNG?raw=true" alt="TCPSOCKET&#x7F16;&#x7A0B;"></p>
+<ul>
+<li><p>&#x5BA2;&#x6237;&#x7AEF;</p>
+<pre class="language-"><code class="lang-python">  <span class="token keyword">import</span> socket
+
+  s <span class="token operator">=</span> socket<span class="token punctuation">.</span>socket<span class="token punctuation">(</span>socket<span class="token punctuation">.</span>AF_INET<span class="token punctuation">,</span> socket<span class="token punctuation">.</span>SOCK_STREAM<span class="token punctuation">)</span>
+  s<span class="token punctuation">.</span>connect<span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token string">&apos;127.0.0.1&apos;</span><span class="token punctuation">,</span> <span class="token number">8888</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+  s<span class="token punctuation">.</span>sendall<span class="token punctuation">(</span>b<span class="token string">&apos;Hello World&apos;</span><span class="token punctuation">)</span>
+  data <span class="token operator">=</span> s<span class="token punctuation">.</span>recv<span class="token punctuation">(</span><span class="token number">1024</span><span class="token punctuation">)</span>
+  <span class="token keyword">print</span><span class="token punctuation">(</span>data<span class="token punctuation">.</span>decode<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+  s<span class="token punctuation">.</span>close<span class="token punctuation">(</span><span class="token punctuation">)</span>
+</code></pre>
+</li>
+<li><p>&#x670D;&#x52A1;&#x7AEF;</p>
+<pre class="language-"><code class="lang-python">  <span class="token keyword">import</span> socket
+  <span class="token keyword">import</span> time
+
+  s <span class="token operator">=</span> socket<span class="token punctuation">.</span>socket<span class="token punctuation">(</span><span class="token punctuation">)</span>
+  s<span class="token punctuation">.</span>bind<span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token string">&apos;&apos;</span><span class="token punctuation">,</span> <span class="token number">8888</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+  s<span class="token punctuation">.</span>listen<span class="token punctuation">(</span><span class="token punctuation">)</span>
+
+  <span class="token keyword">while</span> <span class="token boolean">True</span><span class="token punctuation">:</span>
+      client<span class="token punctuation">,</span> addr <span class="token operator">=</span> s<span class="token punctuation">.</span>accept<span class="token punctuation">(</span><span class="token punctuation">)</span>   <span class="token comment"># return conn, addr</span>
+      <span class="token keyword">print</span><span class="token punctuation">(</span>client<span class="token punctuation">)</span>
+      timestr <span class="token operator">=</span> time<span class="token punctuation">.</span>ctime<span class="token punctuation">(</span>time<span class="token punctuation">.</span>time<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token operator">+</span> <span class="token string">&apos;\r\n&apos;</span>
+      client<span class="token punctuation">.</span>send<span class="token punctuation">(</span>timestr<span class="token punctuation">.</span>encode<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span>   <span class="token comment"># send &#x53C2;&#x6570; encode(&apos;utf8&apos;)</span>
+      client<span class="token punctuation">.</span>close<span class="token punctuation">(</span><span class="token punctuation">)</span>
+</code></pre>
+</li>
+</ul>
+</li>
+<li><p>&#x5982;&#x4F55;&#x4F7F;&#x7528;socket&#x53D1;&#x9001;HTTP&#x8BF7;&#x6C42;</p>
+<ul>
+<li>&#x4F7F;&#x7528;socket&#x63A5;&#x53E3;&#x53D1;&#x9001;HTTP&#x8BF7;&#x6C42;</li>
+<li>HTTP&#x5EFA;&#x7ACB;&#x5728;TCP&#x57FA;&#x7840;&#x4E4B;&#x4E0A;</li>
+<li><p>HTTP&#x662F;&#x57FA;&#x4E8E;&#x6587;&#x672C;&#x534F;&#x8BAE;&#x7684;</p>
+<pre class="language-"><code class="lang-python"><span class="token keyword">import</span> socket
+
+s <span class="token operator">=</span> socket<span class="token punctuation">.</span>socket<span class="token punctuation">(</span><span class="token punctuation">)</span>
+s<span class="token punctuation">.</span>connect<span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token string">&apos;www.baidu.com&apos;</span><span class="token punctuation">,</span> <span class="token number">80</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+
+http <span class="token operator">=</span> b<span class="token string">&quot;GET / HTTP/1.1\r\nHost: www.baidu.com\r\n\r\n&quot;</span>
+s<span class="token punctuation">.</span>sendall<span class="token punctuation">(</span>http<span class="token punctuation">)</span>
+buf <span class="token operator">=</span> s<span class="token punctuation">.</span>recv<span class="token punctuation">(</span><span class="token number">1024</span><span class="token punctuation">)</span>
+<span class="token keyword">print</span><span class="token punctuation">(</span>buf<span class="token punctuation">)</span>
+s<span class="token punctuation">.</span>close<span class="token punctuation">(</span><span class="token punctuation">)</span>
+</code></pre>
+</li>
+</ul>
+</li>
+</ul>
 
                                 
                                 </section>
@@ -1172,7 +1225,7 @@
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"7.3 网络编程常考题","level":"1.8.3","depth":2,"next":{"title":"7.4 并发编程IO多路复用常见考题","level":"1.8.4","depth":2,"path":"chapter7/4.md","ref":"chapter7/4.md","articles":[]},"previous":{"title":"7.2 HTTP面试常考题","level":"1.8.2","depth":2,"path":"chapter7/2.md","ref":"chapter7/2.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":["expandable-chapters-small","splitter","-lunr","-search","search-plus","prism","-highlight","emphasize","livereload"],"pluginsConfig":{"prism":{},"emphasize":{},"livereload":{},"splitter":{},"fontsettings":{"theme":"white","family":"sans","size":2},"expandable-chapters-small":{},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"search-plus":{}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"chapter7/3.md","mtime":"2019-03-19T14:57:04.580Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2019-03-22T09:32:49.014Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"7.3 网络编程常考题","level":"1.8.3","depth":2,"next":{"title":"7.4 并发编程IO多路复用常见考题","level":"1.8.4","depth":2,"path":"chapter7/4.md","ref":"chapter7/4.md","articles":[]},"previous":{"title":"7.2 HTTP面试常考题","level":"1.8.2","depth":2,"path":"chapter7/2.md","ref":"chapter7/2.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":["expandable-chapters-small","splitter","-lunr","-search","search-plus","prism","-highlight","emphasize","livereload"],"pluginsConfig":{"prism":{},"emphasize":{},"livereload":{},"splitter":{},"fontsettings":{"theme":"white","family":"sans","size":2},"expandable-chapters-small":{},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"search-plus":{}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"chapter7/3.md","mtime":"2019-03-26T02:19:01.311Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2019-03-26T02:15:04.815Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>

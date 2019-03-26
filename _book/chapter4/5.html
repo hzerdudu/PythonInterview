@@ -1129,6 +1129,52 @@
                                 <section class="normal markdown-section">
                                 
                                 <h1 id="45-python&#x6570;&#x636E;&#x7ED3;&#x6784;&#x5E38;&#x8003;&#x9898;&#x4E4B;&#x94FE;&#x8868;">4.5 Python&#x6570;&#x636E;&#x7ED3;&#x6784;&#x5E38;&#x8003;&#x9898;&#x4E4B;&#x94FE;&#x8868;</h1>
+<ul>
+<li><p>&#x5220;&#x9664;&#x94FE;&#x8868;&#x4E2D;&#x7684;&#x4E00;&#x4E2A;&#x8282;&#x70B9;</p>
+<pre class="language-"><code class="lang-python">  <span class="token comment"># Definition for singly-linked list.</span>
+  <span class="token comment"># class ListNode:</span>
+  <span class="token comment">#     def __init__(self, x):</span>
+  <span class="token comment">#         self.val = x</span>
+  <span class="token comment">#         self.next = None</span>
+
+  <span class="token keyword">class</span> <span class="token class-name">Solution</span><span class="token punctuation">:</span>
+      <span class="token keyword">def</span> <span class="token function">deleteNode</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> node<span class="token punctuation">)</span><span class="token punctuation">:</span>
+          <span class="token triple-quoted-string string">&quot;&quot;&quot;
+          :type node: ListNode
+          :rtype: void Do not return anything, modify node in-place instead.
+          &quot;&quot;&quot;</span>
+          nextnode <span class="token operator">=</span> node<span class="token punctuation">.</span><span class="token builtin">next</span>
+          after_nextnode <span class="token operator">=</span> node<span class="token punctuation">.</span><span class="token builtin">next</span><span class="token punctuation">.</span><span class="token builtin">next</span>
+          node<span class="token punctuation">.</span>val <span class="token operator">=</span> nextnode<span class="token punctuation">.</span>val
+          node<span class="token punctuation">.</span><span class="token builtin">next</span> <span class="token operator">=</span> after_nextnode
+</code></pre>
+</li>
+<li><p>&#x5408;&#x5E76;&#x4E24;&#x4E2A;&#x6709;&#x5E8F;&#x94FE;&#x8868;</p>
+<pre class="language-"><code class="lang-python">  <span class="token comment"># Definition for singly-linked list.</span>
+  <span class="token keyword">class</span> <span class="token class-name">ListNode</span><span class="token punctuation">:</span>
+      <span class="token keyword">def</span> <span class="token function">__init__</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> x<span class="token punctuation">)</span><span class="token punctuation">:</span>
+          self<span class="token punctuation">.</span>val <span class="token operator">=</span> x
+          self<span class="token punctuation">.</span><span class="token builtin">next</span> <span class="token operator">=</span> <span class="token boolean">None</span>
+
+  <span class="token keyword">class</span> <span class="token class-name">Solution</span><span class="token punctuation">:</span>
+      <span class="token keyword">def</span> <span class="token function">mergeTwoLists</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> l1<span class="token punctuation">:</span> ListNode<span class="token punctuation">,</span> l2<span class="token punctuation">:</span> ListNode<span class="token punctuation">)</span> <span class="token operator">-</span><span class="token operator">&gt;</span> ListNode<span class="token punctuation">:</span>
+          root <span class="token operator">=</span> ListNode<span class="token punctuation">(</span><span class="token boolean">None</span><span class="token punctuation">)</span>
+          cur <span class="token operator">=</span> root
+          <span class="token keyword">while</span> l1 <span class="token operator">and</span> l2<span class="token punctuation">:</span>
+              <span class="token keyword">if</span> l1<span class="token punctuation">.</span>val <span class="token operator">&lt;</span> l2<span class="token punctuation">.</span>val<span class="token punctuation">:</span>
+                  node <span class="token operator">=</span> ListNode<span class="token punctuation">(</span>l1<span class="token punctuation">.</span>val<span class="token punctuation">)</span>
+                  l1 <span class="token operator">=</span> l1<span class="token punctuation">.</span><span class="token builtin">next</span>  <span class="token comment"># l1&#x524D;&#x79FB;</span>
+              <span class="token keyword">else</span><span class="token punctuation">:</span>
+                  node <span class="token operator">=</span> ListNode<span class="token punctuation">(</span>l2<span class="token punctuation">.</span>val<span class="token punctuation">)</span>
+                  l2 <span class="token operator">=</span> l2<span class="token punctuation">.</span><span class="token builtin">next</span>
+              cur<span class="token punctuation">.</span><span class="token builtin">next</span> <span class="token operator">=</span> node
+              cur <span class="token operator">=</span> node
+          <span class="token comment"># l1 &#x6216;&#x8005; l2&#x53EF;&#x80FD; &#x8FD8;&#x6709;&#x5269;&#x4F59;&#x5143;&#x7D20;</span>
+          cur<span class="token punctuation">.</span><span class="token builtin">next</span> <span class="token operator">=</span> l1 <span class="token operator">or</span> l2
+          <span class="token keyword">return</span> root<span class="token punctuation">.</span><span class="token builtin">next</span>
+</code></pre>
+</li>
+</ul>
 
                                 
                                 </section>
@@ -1172,7 +1218,7 @@
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"4.5 Python数据结构常考题之链表","level":"1.5.5","depth":2,"next":{"title":"4.6 Python数据结构常考题之二叉树","level":"1.5.6","depth":2,"path":"chapter4/6.md","ref":"chapter4/6.md","articles":[]},"previous":{"title":"4.4 Python白板编程","level":"1.5.4","depth":2,"path":"chapter4/4.md","ref":"chapter4/4.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":["expandable-chapters-small","splitter","-lunr","-search","search-plus","prism","-highlight","emphasize","livereload"],"pluginsConfig":{"prism":{},"emphasize":{},"livereload":{},"splitter":{},"fontsettings":{"theme":"white","family":"sans","size":2},"expandable-chapters-small":{},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"search-plus":{}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"chapter4/5.md","mtime":"2019-03-19T14:57:04.535Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2019-03-22T09:32:49.014Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"4.5 Python数据结构常考题之链表","level":"1.5.5","depth":2,"next":{"title":"4.6 Python数据结构常考题之二叉树","level":"1.5.6","depth":2,"path":"chapter4/6.md","ref":"chapter4/6.md","articles":[]},"previous":{"title":"4.4 Python白板编程","level":"1.5.4","depth":2,"path":"chapter4/4.md","ref":"chapter4/4.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":["expandable-chapters-small","splitter","-lunr","-search","search-plus","prism","-highlight","emphasize","livereload"],"pluginsConfig":{"prism":{},"emphasize":{},"livereload":{},"splitter":{},"fontsettings":{"theme":"white","family":"sans","size":2},"expandable-chapters-small":{},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"search-plus":{}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"chapter4/5.md","mtime":"2019-03-25T02:49:40.703Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2019-03-26T02:15:04.815Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>

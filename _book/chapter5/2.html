@@ -1129,6 +1129,86 @@
                                 <section class="normal markdown-section">
                                 
                                 <h1 id="52-&#x88C5;&#x9970;&#x5668;&#x9762;&#x8BD5;&#x5E38;&#x8003;&#x9898;">5.2 &#x88C5;&#x9970;&#x5668;&#x9762;&#x8BD5;&#x5E38;&#x8003;&#x9898;</h1>
+<ul>
+<li>&#x88C5;&#x9970;&#x5668;<ul>
+<li>Python&#x4E2D;&#x4E00;&#x5207;&#x7686;&#x5BF9;&#x8C61;&#xFF0C;&#x51FD;&#x6570;&#x4E5F;&#x53EF;&#x4EE5;&#x5F53;&#x505A;&#x53C2;&#x6570;&#x4F20;&#x9012;</li>
+<li>&#x88C5;&#x9970;&#x5668;&#x662F;&#x63A5;&#x6536;&#x51FD;&#x6570;&#x4F5C;&#x4E3A;&#x53C2;&#x6570;&#xFF0C;&#x6DFB;&#x52A0;&#x529F;&#x80FD;&#x540E;&#x8FD4;&#x56DE;&#x4E00;&#x4E2A;&#x65B0;&#x51FD;&#x6570;&#x7684;&#x51FD;&#x6570;&#xFF08;&#x7C7B;&#xFF09;</li>
+<li>Python&#x4E2D;&#x901A;&#x8FC7;@&#x4F7F;&#x7528;&#x88C5;&#x9970;&#x5668;</li>
+</ul>
+</li>
+<li><p>&#x7F16;&#x5199;&#x4E00;&#x4E2A;&#x8BB0;&#x5F55;&#x51FD;&#x6570;&#x8017;&#x65F6;&#x7684;&#x88C5;&#x9970;&#x5668;</p>
+<pre class="language-"><code class="lang-python">  <span class="token keyword">import</span> time
+
+  <span class="token keyword">def</span> <span class="token function">log_time</span><span class="token punctuation">(</span>func<span class="token punctuation">)</span><span class="token punctuation">:</span>  <span class="token comment"># &#x63A5;&#x53D7;&#x4E00;&#x4E2A;&#x51FD;&#x6570;&#x4F5C;&#x4E3A;&#x53C2;&#x6570;</span>
+      <span class="token keyword">def</span> <span class="token function">_log</span><span class="token punctuation">(</span><span class="token operator">*</span>args<span class="token punctuation">,</span> <span class="token operator">**</span>kwargs<span class="token punctuation">)</span><span class="token punctuation">:</span>
+          beg <span class="token operator">=</span> time<span class="token punctuation">.</span>time<span class="token punctuation">(</span><span class="token punctuation">)</span>
+          res <span class="token operator">=</span> func<span class="token punctuation">(</span><span class="token operator">*</span>args<span class="token punctuation">,</span> <span class="token operator">**</span>kwargs<span class="token punctuation">)</span>
+          <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">&apos;ues time:{}&apos;</span><span class="token punctuation">.</span><span class="token builtin">format</span><span class="token punctuation">(</span>time<span class="token punctuation">.</span>time<span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">-</span> beg<span class="token punctuation">)</span><span class="token punctuation">)</span>
+          <span class="token keyword">return</span> res
+      <span class="token keyword">return</span> _log
+
+  @log_time  <span class="token comment"># @&#x88C5;&#x9970;&#x5668;&#x8BED;&#x6CD5;&#x7CD6;</span>
+  <span class="token keyword">def</span> <span class="token function">mysleep</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+      time<span class="token punctuation">.</span>sleep<span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">)</span>
+
+  <span class="token comment"># newsleep = log_time(mysleep)</span>
+  <span class="token comment"># newsleep()</span>
+  mysleep<span class="token punctuation">(</span><span class="token punctuation">)</span>
+</code></pre>
+</li>
+<li><p>&#x4F7F;&#x7528;&#x7C7B;&#x5B9E;&#x73B0;</p>
+<pre class="language-"><code class="lang-python">  <span class="token keyword">import</span> time
+
+  <span class="token keyword">class</span> <span class="token class-name">LogTime</span><span class="token punctuation">:</span>
+      <span class="token keyword">def</span> <span class="token function">__call__</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> func<span class="token punctuation">)</span><span class="token punctuation">:</span>
+          <span class="token keyword">def</span> <span class="token function">_log</span><span class="token punctuation">(</span><span class="token operator">*</span>args<span class="token punctuation">,</span> <span class="token operator">**</span>kwargs<span class="token punctuation">)</span><span class="token punctuation">:</span>
+              beg <span class="token operator">=</span> time<span class="token punctuation">.</span>time<span class="token punctuation">(</span><span class="token punctuation">)</span>
+              res <span class="token operator">=</span> func<span class="token punctuation">(</span><span class="token operator">*</span>args<span class="token punctuation">,</span> <span class="token operator">**</span>kwargs<span class="token punctuation">)</span>
+              <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">&apos;Use time:{}&apos;</span><span class="token punctuation">.</span><span class="token builtin">format</span><span class="token punctuation">(</span>time<span class="token punctuation">.</span>time<span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">-</span> beg<span class="token punctuation">)</span><span class="token punctuation">)</span>
+              <span class="token keyword">return</span> res
+
+          <span class="token keyword">return</span> _log
+
+  @LogTime<span class="token punctuation">(</span><span class="token punctuation">)</span>
+  <span class="token keyword">def</span> <span class="token function">mysleep2</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+      time<span class="token punctuation">.</span>sleep<span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">)</span>
+
+  mysleep2<span class="token punctuation">(</span><span class="token punctuation">)</span>
+</code></pre>
+</li>
+<li><p>&#x5982;&#x4F55;&#x7ED9;&#x88C5;&#x9970;&#x5668;&#x589E;&#x52A0;&#x53C2;&#x6570;</p>
+<ul>
+<li><p>&#x4F7F;&#x7528;&#x7C7B;&#x88C5;&#x9970;&#x5668;&#x6BD4;&#x8F83;&#x65B9;&#x4FBF;&#x5B9E;&#x73B0;&#x88C5;&#x9970;&#x5668;&#x53C2;&#x6570;</p>
+<pre class="language-"><code class="lang-python"><span class="token keyword">import</span> time
+
+<span class="token keyword">class</span> <span class="token class-name">LogTime</span><span class="token punctuation">:</span>
+
+  <span class="token keyword">def</span> <span class="token function">__init__</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> use_int<span class="token operator">=</span><span class="token boolean">False</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+      self<span class="token punctuation">.</span>use_int <span class="token operator">=</span> use_int
+
+  <span class="token keyword">def</span> <span class="token function">__call__</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> func<span class="token punctuation">)</span><span class="token punctuation">:</span>
+      <span class="token keyword">def</span> <span class="token function">_log</span><span class="token punctuation">(</span><span class="token operator">*</span>args<span class="token punctuation">,</span> <span class="token operator">**</span>kwargs<span class="token punctuation">)</span><span class="token punctuation">:</span>
+          beg <span class="token operator">=</span> time<span class="token punctuation">.</span>time<span class="token punctuation">(</span><span class="token punctuation">)</span>
+          res <span class="token operator">=</span> func<span class="token punctuation">(</span><span class="token operator">*</span>args<span class="token punctuation">,</span> <span class="token operator">**</span>kwargs<span class="token punctuation">)</span>
+          <span class="token keyword">if</span> self<span class="token punctuation">.</span>use_int<span class="token punctuation">:</span>
+              <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">&apos;use time: {}&apos;</span><span class="token punctuation">.</span><span class="token builtin">format</span><span class="token punctuation">(</span><span class="token builtin">int</span><span class="token punctuation">(</span>time<span class="token punctuation">.</span>time<span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">-</span> beg<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+          <span class="token keyword">else</span><span class="token punctuation">:</span>
+              <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">&apos;use time: {}&apos;</span><span class="token punctuation">.</span><span class="token builtin">format</span><span class="token punctuation">(</span>time<span class="token punctuation">.</span>time<span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">-</span> beg<span class="token punctuation">)</span><span class="token punctuation">)</span>
+          <span class="token keyword">return</span> res
+
+      <span class="token keyword">return</span> _log
+
+@LogTime<span class="token punctuation">(</span><span class="token boolean">True</span><span class="token punctuation">)</span>
+<span class="token keyword">def</span> <span class="token function">mysleep</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+  time<span class="token punctuation">.</span>sleep<span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">)</span>
+
+<span class="token keyword">if</span> __name__ <span class="token operator">==</span> <span class="token string">&apos;__main__&apos;</span><span class="token punctuation">:</span>
+  mysleep<span class="token punctuation">(</span><span class="token punctuation">)</span>
+</code></pre>
+</li>
+</ul>
+</li>
+</ul>
 
                                 
                                 </section>
@@ -1172,7 +1252,7 @@
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"5.2 装饰器面试常考题","level":"1.6.2","depth":2,"next":{"title":"5.3 设计模式：创建型模式","level":"1.6.3","depth":2,"path":"chapter5/3.md","ref":"chapter5/3.md","articles":[]},"previous":{"title":"5.1 面向对象基础及Python类常考题","level":"1.6.1","depth":2,"path":"chapter5/1.md","ref":"chapter5/1.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":["expandable-chapters-small","splitter","-lunr","-search","search-plus","prism","-highlight","emphasize","livereload"],"pluginsConfig":{"prism":{},"emphasize":{},"livereload":{},"splitter":{},"fontsettings":{"theme":"white","family":"sans","size":2},"expandable-chapters-small":{},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"search-plus":{}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"chapter5/2.md","mtime":"2019-03-19T14:57:04.552Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2019-03-22T09:32:49.014Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"5.2 装饰器面试常考题","level":"1.6.2","depth":2,"next":{"title":"5.3 设计模式：创建型模式","level":"1.6.3","depth":2,"path":"chapter5/3.md","ref":"chapter5/3.md","articles":[]},"previous":{"title":"5.1 面向对象基础及Python类常考题","level":"1.6.1","depth":2,"path":"chapter5/1.md","ref":"chapter5/1.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":["expandable-chapters-small","splitter","-lunr","-search","search-plus","prism","-highlight","emphasize","livereload"],"pluginsConfig":{"prism":{},"emphasize":{},"livereload":{},"splitter":{},"fontsettings":{"theme":"white","family":"sans","size":2},"expandable-chapters-small":{},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"search-plus":{}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"chapter5/2.md","mtime":"2019-03-25T07:22:00.794Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2019-03-26T02:15:04.815Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>
